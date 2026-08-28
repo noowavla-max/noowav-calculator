@@ -1,0 +1,1586 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NOOWAV Peptide Calculator</title>
+
+<style>
+:root{
+  --bg:#050505;
+  --panel:#111114;
+  --panel2:#17171d;
+  --border:#30203a;
+  --pink:#ff68ee;
+  --mag:#d91cd9;
+  --purple:#7b2a9a;
+  --aqua:#9bd5d5;
+  --blue:#80bfff;
+  --green:#9be7b0;
+  --green2:#72d89a;
+  --text:#f7f5fb;
+  --muted:#aaa3b3;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:#050505;
+  color:var(--text);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+
+.wrap{
+  max-width:1100px;
+  margin:0 auto;
+  padding:24px;
+}
+
+.shell{
+  background:var(--bg);
+  border:1px solid #24182d;
+  border-radius:24px;
+  overflow:hidden;
+}
+
+.hero{
+  position:relative;
+  padding:30px 28px;
+  min-height:210px;
+  overflow:hidden;
+  background:#070708;
+}
+
+.hero svg{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  opacity:.48;
+  pointer-events:none;
+}
+
+.brand{
+  position:relative;
+  z-index:2;
+  font-size:clamp(48px,8vw,86px);
+  font-weight:900;
+  letter-spacing:-.06em;
+  line-height:.82;
+}
+
+.noo{color:var(--pink)}
+.wav{color:var(--aqua)}
+
+.sub{
+  position:relative;
+  z-index:2;
+  color:var(--blue);
+  font-size:clamp(24px,4vw,42px);
+  font-weight:900;
+  letter-spacing:-.04em;
+}
+
+.content{
+  background:#08080a;
+  padding:20px;
+}
+
+.card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:22px;
+  margin-bottom:18px;
+}
+
+.panel{
+  background:var(--panel2);
+  border:1px solid #35283e;
+  border-radius:14px;
+  padding:16px;
+}
+
+.grid2{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px;
+}
+
+.grid3{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+}
+
+.grid4{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:12px;
+}
+
+label span.label{
+  display:block;
+  font-size:14px;
+  font-weight:700;
+  margin-bottom:7px;
+}
+
+select,
+input{
+  width:100%;
+  min-height:48px;
+  padding:0 12px;
+  border-radius:12px;
+  background:#0c0c10;
+  border:1px solid #3b2a45;
+  color:var(--text);
+  font-size:16px;
+}
+
+select:focus,
+input:focus{
+  outline:2px solid var(--pink);
+  outline-offset:2px;
+}
+
+.muted{color:var(--muted)}
+.pink{color:var(--pink)}
+.aqua{color:var(--aqua)}
+.blue{color:var(--blue)}
+
+.big{
+  font-size:28px;
+  font-weight:900;
+}
+
+.xl{
+  font-size:38px;
+  font-weight:900;
+}
+
+.suggested{
+  display:inline-flex;
+  align-items:center;
+  padding:5px 9px;
+  border-radius:999px;
+  background:#1d1022;
+  border:1px solid #55205f;
+  color:#f6a3ef;
+  font-size:12px;
+  font-weight:700;
+}
+
+.row-between{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.protocol-panel{
+  display:none;
+}
+
+.protocol-panel.is-open{
+  display:block;
+}
+
+.scale-wrap{
+  overflow-x:auto;
+  padding:2px 0 4px;
+}
+
+.scale{
+  display:block;
+  width:100%;
+  min-width:680px;
+  height:auto;
+}
+
+.hidden{
+  display:none !important;
+}
+
+.section-kicker{
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:.18em;
+  color:var(--muted);
+}
+
+h2,h3{
+  margin:0;
+}
+
+ul{
+  padding-left:22px;
+}
+
+.disclaimer{
+  font-size:13px;
+  line-height:1.5;
+}
+
+@media(max-width:800px){
+  .grid2,
+  .grid3{
+    grid-template-columns:1fr;
+  }
+
+  .grid4{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .wrap{
+    padding:10px;
+  }
+
+  .content{
+    padding:12px;
+  }
+
+  .card{
+    padding:16px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+<div class="shell">
+
+<section class="hero">
+
+<svg viewBox="0 0 1200 250" preserveAspectRatio="none" aria-hidden="true">
+  <path
+    d="M-80 160 C80 20 180 20 290 160 S500 300 610 155 S815 0 925 160 S1110 300 1280 155"
+    fill="none"
+    stroke="#5e2478"
+    stroke-width="12"
+  />
+  <path
+    d="M-60 160 C95 55 190 55 300 160 S500 270 610 155 S805 35 915 160 S1100 270 1260 155"
+    fill="none"
+    stroke="#b322b5"
+    stroke-width="9"
+  />
+  <path
+    d="M-45 160 C110 78 200 78 310 160 S500 245 610 155 S795 65 905 160 S1090 245 1245 155"
+    fill="none"
+    stroke="#e520d2"
+    stroke-width="7"
+  />
+</svg>
+
+<div class="brand">
+  <span class="noo">NOO</span><span class="wav">WAV</span>
+</div>
+
+<div class="sub">SOLUTIONS</div>
+
+</section>
+
+<main class="content">
+
+<section class="card">
+
+<div class="grid2">
+
+<label>
+  <span class="label">Select product</span>
+
+  <select id="product">
+    <option value="nw20">NW3R — 20 mg</option>
+    <option value="nw30">NW3R — 30 mg</option>
+    <option value="epi10">Epitalon (AEDG) — 10 mg</option>
+  </select>
+</label>
+
+<label>
+
+  <div class="row-between">
+    <span class="label" style="margin-bottom:7px">
+      BAC amount
+    </span>
+
+    <span id="suggested" class="suggested">
+      Suggested: 2.0 mL
+    </span>
+  </div>
+
+  <input
+    id="bac"
+    type="number"
+    min="0.1"
+    max="20"
+    step="0.1"
+    value="2.0"
+    inputmode="decimal"
+  >
+
+  <div class="muted" style="font-size:12px;margin-top:6px">
+    Change BAC volume and all measurements update automatically.
+  </div>
+
+</label>
+
+</div>
+
+<div class="grid4" style="margin-top:16px">
+
+<div class="panel">
+  <div class="muted" style="font-size:12px">Vial amount</div>
+  <div id="vial" class="big">20 mg</div>
+</div>
+
+<div class="panel">
+  <div class="muted" style="font-size:12px">Concentration</div>
+  <div id="conc" class="big aqua">10 mg/mL</div>
+</div>
+
+<div class="panel">
+  <div class="muted" style="font-size:12px">Per U-100 unit</div>
+  <div id="unit" class="big pink">0.10 mg</div>
+</div>
+
+<div class="panel">
+  <div class="muted" style="font-size:12px">10 units equals</div>
+  <div id="ten" class="big blue">1 mg</div>
+</div>
+
+</div>
+
+</section>
+
+
+<section class="card">
+
+<div class="section-kicker">
+  Optional reference
+</div>
+
+<h2 style="margin-top:4px">
+  Protocol Reference
+</h2>
+
+<label style="display:block;margin-top:16px">
+
+  <span class="label">
+    Protocol information
+  </span>
+
+  <select id="protocol">
+    <option value="dose" selected>
+      Protocol amounts + syringe marks
+    </option>
+
+    <option value="timing">
+      Timing & cycle notes
+    </option>
+
+    <option value="safety">
+      Safety notes
+    </option>
+  </select>
+
+</label>
+
+
+<div id="dosePanel" class="protocol-panel is-open" style="margin-top:16px">
+
+<div class="panel">
+
+  <div class="muted" style="font-size:12px">
+    Supplied protocol reference
+  </div>
+
+  <div id="range" class="big pink">
+    0.5–2 mg once weekly
+  </div>
+
+  <div class="muted" style="font-size:12px;margin-top:6px">
+    The reference amount below is converted using the BAC amount entered above.
+  </div>
+
+</div>
+
+
+<div class="grid2" style="margin-top:14px">
+
+<label>
+
+  <span class="label">
+    Protocol amount to visualize
+  </span>
+
+  <select id="dose"></select>
+
+</label>
+
+
+<label>
+
+  <span class="label">
+    Select U-100 syringe
+  </span>
+
+  <select id="syringe">
+
+    <option value="100" selected>
+      1.0 mL / 100-unit U-100
+    </option>
+
+    <option value="50">
+      0.5 mL / 50-unit U-100
+    </option>
+
+    <option value="30">
+      0.3 mL / 30-unit U-100
+    </option>
+
+  </select>
+
+</label>
+
+</div>
+
+
+<div class="grid3" style="margin-top:14px">
+
+<div class="panel" style="text-align:center">
+
+  <div class="muted" style="font-size:12px">
+    Protocol amount
+  </div>
+
+  <div id="doseMg" class="big aqua">
+    0.5 mg
+  </div>
+
+</div>
+
+
+<div class="panel" style="text-align:center">
+
+  <div class="muted" style="font-size:12px">
+    Syringe mark
+  </div>
+
+  <div id="doseUnits" class="xl pink">
+    5 units
+  </div>
+
+</div>
+
+
+<div class="panel" style="text-align:center">
+
+  <div class="muted" style="font-size:12px">
+    Liquid volume
+  </div>
+
+  <div id="doseMl" class="big blue">
+    0.050 mL
+  </div>
+
+</div>
+
+</div>
+
+
+<div class="panel" style="margin-top:14px">
+
+<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:14px">
+
+  <span
+    style="
+      display:inline-block;
+      width:16px;
+      height:16px;
+      border-radius:4px;
+      background:#9be7b0;
+    "
+  ></span>
+
+  <span class="muted">
+    Light green = filled portion
+  </span>
+
+</div>
+
+
+<div class="scale-wrap">
+
+<svg
+  class="scale"
+  viewBox="0 0 1000 245"
+  role="img"
+  aria-label="U-100 syringe scale"
+>
+
+<defs>
+
+  <linearGradient id="fillGrad" x1="0" y1="0" x2="1" y2="0">
+
+    <stop
+      offset="0"
+      stop-color="#72d89a"
+      stop-opacity=".50"
+    />
+
+    <stop
+      offset="1"
+      stop-color="#9be7b0"
+      stop-opacity=".78"
+    />
+
+  </linearGradient>
+
+</defs>
+
+
+<rect
+  x="20"
+  y="52"
+  width="960"
+  height="126"
+  rx="20"
+  fill="#15131a"
+  stroke="#4a2454"
+  stroke-width="2"
+/>
+
+
+<rect
+  id="fillBar"
+  x="160"
+  y="66"
+  width="39.5"
+  height="102"
+  rx="10"
+  fill="url(#fillGrad)"
+/>
+
+
+<text
+  x="48"
+  y="104"
+  font-size="16"
+  font-weight="800"
+  fill="#9bd5d5"
+  font-family="Arial,sans-serif"
+>
+U-100
+</text>
+
+
+<text
+  x="44"
+  y="128"
+  font-size="15"
+  font-weight="700"
+  fill="#80bfff"
+  font-family="Arial,sans-serif"
+>
+INSULIN
+</text>
+
+
+<g id="ticks"></g>
+
+<g id="labels"></g>
+
+
+<line
+  id="hi"
+  x1="199"
+  y1="65"
+  x2="199"
+  y2="169"
+  stroke="#ff68ee"
+  stroke-width="7"
+  stroke-linecap="round"
+/>
+
+
+<circle
+  id="dot"
+  cx="199"
+  cy="62"
+  r="9"
+  fill="#d91cd9"
+/>
+
+
+<rect
+  id="bubble"
+  x="144"
+  y="195"
+  width="110"
+  height="38"
+  rx="19"
+  fill="#2a102e"
+  stroke="#7b2a9a"
+/>
+
+
+<text
+  id="bubbleText"
+  x="199"
+  y="219"
+  text-anchor="middle"
+  font-size="16"
+  font-weight="800"
+  fill="#ff91f3"
+  font-family="Arial,sans-serif"
+>
+5 units
+</text>
+
+</svg>
+
+</div>
+
+</div>
+
+
+<div
+  id="warning"
+  class="panel pink hidden"
+  style="margin-top:14px;font-size:14px"
+></div>
+
+</div>
+
+
+<div
+  id="timingPanel"
+  class="protocol-panel"
+  style="margin-top:16px"
+>
+
+<div class="panel">
+
+  <div
+    class="aqua"
+    style="font-weight:800;margin-bottom:8px"
+  >
+    Timing & cycle notes
+  </div>
+
+  <ul
+    id="timing"
+    class="muted"
+  ></ul>
+
+</div>
+
+</div>
+
+
+<div
+  id="safetyPanel"
+  class="protocol-panel"
+  style="margin-top:16px"
+>
+
+<div class="panel">
+
+  <div
+    class="pink"
+    style="font-weight:800;margin-bottom:8px"
+  >
+    Safety notes from supplied reference
+  </div>
+
+  <ul
+    id="safety"
+    class="muted"
+  ></ul>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="panel disclaimer">
+
+<div
+  class="pink"
+  style="font-weight:900"
+>
+RESEARCH USE ONLY
+</div>
+
+<div
+  class="muted"
+  style="margin-top:5px"
+>
+Suggested BAC volumes are intended to keep concentration math easy to read.
+This calculator performs concentration and syringe measurement math.
+Protocol sections summarize supplied reference material and are not presented
+as FDA-approved or individualized treatment schedules.
+Verify vial contents, BAC volume, syringe markings, and calculations independently.
+Always do your own research.
+</div>
+
+</section>
+
+</main>
+
+</div>
+</div>
+
+
+<script>
+
+(() => {
+
+const products = {
+
+  nw20: {
+
+    mg:20,
+
+    suggested:2,
+
+    range:'0.5–2 mg once weekly',
+
+    doses:[
+      {
+        v:.5,
+        l:'Starting range — 0.5 mg'
+      },
+      {
+        v:2,
+        l:'Starting range — 2 mg'
+      }
+    ],
+
+    timing:[
+      'Guide describes once-weekly administration.',
+      'Administration may occur at any point in the day.',
+      'For transition from semaglutide or tirzepatide, the supplied guide says to wait one dosing interval (one week).'
+    ],
+
+    safety:[
+      'GI upset, including nausea and diarrhea',
+      'Hypoglycemia risk',
+      'Fatigue',
+      'Gallbladder-related concerns'
+    ]
+
+  },
+
+
+  nw30: {
+
+    mg:30,
+
+    suggested:3,
+
+    range:'0.5–2 mg once weekly',
+
+    doses:[
+      {
+        v:.5,
+        l:'Starting range — 0.5 mg'
+      },
+      {
+        v:2,
+        l:'Starting range — 2 mg'
+      }
+    ],
+
+    timing:[
+      'Guide describes once-weekly administration.',
+      'Administration may occur at any point in the day.',
+      'For transition from semaglutide or tirzepatide, the supplied guide says to wait one dosing interval (one week).'
+    ],
+
+    safety:[
+      'GI upset, including nausea and diarrhea',
+      'Hypoglycemia risk',
+      'Fatigue',
+      'Gallbladder-related concerns'
+    ]
+
+  },
+
+
+  epi10: {
+
+    mg:10,
+
+    suggested:1,
+
+    range:'2–5 mg, up to 10 mg daily for 10–20 days',
+
+    doses:[
+      {
+        v:2,
+        l:'Typical protocol — 2 mg'
+      },
+      {
+        v:5,
+        l:'Typical protocol — 5 mg'
+      },
+      {
+        v:10,
+        l:'Upper protocol reference — 10 mg'
+      }
+    ],
+
+    timing:[
+      'Supplied sheet lists evening/night timing to align with melatonin surge.',
+      'Frequency listed as 1–2 cycles per year, with up to 3–4 cycles noted.',
+      'Route listed as subcutaneous injection (common) or IM if preferred.'
+    ],
+
+    safety:[
+      'Store lyophilized vials in a cool, dark place; refrigerate after reconstitution.',
+      'Supplied sheet lists occasional headache, mild fatigue, and injection-site irritation.',
+      'Vivid dreams are listed as rare.',
+      'Sheet advises not exceeding recommended cycles and allowing rest periods.'
+    ]
+
+  }
+
+};
+
+
+const $ = id => document.getElementById(id);
+
+
+const product = $('product');
+
+const bac = $('bac');
+
+const suggested = $('suggested');
+
+const vial = $('vial');
+
+const conc = $('conc');
+
+const unit = $('unit');
+
+const ten = $('ten');
+
+
+const protocol = $('protocol');
+
+const dose = $('dose');
+
+const syringe = $('syringe');
+
+const range = $('range');
+
+const doseMg = $('doseMg');
+
+const doseUnits = $('doseUnits');
+
+const doseMl = $('doseMl');
+
+const warning = $('warning');
+
+
+const timing = $('timing');
+
+const safety = $('safety');
+
+
+const panels = {
+
+  dose:$('dosePanel'),
+
+  timing:$('timingPanel'),
+
+  safety:$('safetyPanel')
+
+};
+
+
+const ticks = $('ticks');
+
+const labels = $('labels');
+
+const fillBar = $('fillBar');
+
+const hi = $('hi');
+
+const dot = $('dot');
+
+const bubble = $('bubble');
+
+const bubbleText = $('bubbleText');
+
+
+const startX = 160;
+
+const endX = 950;
+
+const width = endX - startX;
+
+
+const fmt = (n,d=3) =>
+
+Number(n).toLocaleString(
+
+undefined,
+
+{
+  maximumFractionDigits:d
+}
+
+);
+
+
+function fillList(el,items){
+
+  el.innerHTML='';
+
+  items.forEach(item => {
+
+    const li=document.createElement('li');
+
+    li.textContent=item;
+
+    el.appendChild(li);
+
+  });
+
+}
+
+
+function fillDoses(p){
+
+  dose.innerHTML='';
+
+  p.doses.forEach(d => {
+
+    const option=document.createElement('option');
+
+    option.value=d.v;
+
+    option.textContent=d.l;
+
+    dose.appendChild(option);
+
+  });
+
+}
+
+
+function showPanel(){
+
+  Object.keys(panels).forEach(key => {
+
+    panels[key].classList.toggle(
+
+      'is-open',
+
+      key===protocol.value
+
+    );
+
+  });
+
+}
+
+
+function drawScale(cap){
+
+  ticks.innerHTML='';
+
+  labels.innerHTML='';
+
+
+  const ns='http://www.w3.org/2000/svg';
+
+
+  const major = cap===30 ? 5 : 10;
+
+
+  for(
+
+    let u=0;
+
+    u<=cap;
+
+    u++
+
+  ){
+
+    const x =
+
+      startX +
+
+      (u/cap)*width;
+
+
+    const isMajor =
+
+      u%major===0;
+
+
+    const isMid =
+
+      !isMajor &&
+
+      u%5===0;
+
+
+    const len =
+
+      isMajor
+
+      ? 46
+
+      : isMid
+
+      ? 33
+
+      : 22;
+
+
+    const line =
+
+      document.createElementNS(
+
+        ns,
+
+        'line'
+
+      );
+
+
+    line.setAttribute(
+
+      'x1',
+
+      x
+
+    );
+
+
+    line.setAttribute(
+
+      'x2',
+
+      x
+
+    );
+
+
+    line.setAttribute(
+
+      'y1',
+
+      '75'
+
+    );
+
+
+    line.setAttribute(
+
+      'y2',
+
+      75+len
+
+    );
+
+
+    line.setAttribute(
+
+      'stroke',
+
+      isMajor
+
+      ? '#f5f3f8'
+
+      : '#8a7e91'
+
+    );
+
+
+    line.setAttribute(
+
+      'stroke-width',
+
+      isMajor
+
+      ? '3'
+
+      : '1.5'
+
+    );
+
+
+    ticks.appendChild(line);
+
+
+    if(isMajor){
+
+      const text =
+
+        document.createElementNS(
+
+          ns,
+
+          'text'
+
+        );
+
+
+      text.setAttribute(
+
+        'x',
+
+        x
+
+      );
+
+
+      text.setAttribute(
+
+        'y',
+
+        '158'
+
+      );
+
+
+      text.setAttribute(
+
+        'text-anchor',
+
+        'middle'
+
+      );
+
+
+      text.setAttribute(
+
+        'font-size',
+
+        '21'
+
+      );
+
+
+      text.setAttribute(
+
+        'font-weight',
+
+        '800'
+
+      );
+
+
+      text.setAttribute(
+
+        'fill',
+
+        '#f2edf6'
+
+      );
+
+
+      text.setAttribute(
+
+        'font-family',
+
+        'Arial,sans-serif'
+
+      );
+
+
+      text.textContent=u;
+
+
+      labels.appendChild(text);
+
+    }
+
+  }
+
+}
+
+
+function updateDose(){
+
+  const p =
+
+    products[product.value];
+
+
+  const cap =
+
+    Number(syringe.value);
+
+
+  const mg =
+
+    Number(dose.value);
+
+
+  let bacMl =
+
+    Number(bac.value);
+
+
+  if(
+
+    !Number.isFinite(bacMl) ||
+
+    bacMl<=0
+
+  ){
+
+    bacMl=.1;
+
+  }
+
+
+  const concentration =
+
+    p.mg / bacMl;
+
+
+  const perUnit =
+
+    concentration / 100;
+
+
+  const units =
+
+    mg / perUnit;
+
+
+  const ml =
+
+    units / 100;
+
+
+  doseMg.textContent =
+
+    `${fmt(mg,2)} mg`;
+
+
+  doseUnits.textContent =
+
+    `${fmt(units,2)} units`;
+
+
+  doseMl.textContent =
+
+    `${fmt(ml,3)} mL`;
+
+
+  drawScale(cap);
+
+
+  const visual =
+
+    Math.min(
+
+      Math.max(units,0),
+
+      cap
+
+    );
+
+
+  const x =
+
+    startX +
+
+    (visual/cap)*width;
+
+
+  fillBar.setAttribute(
+
+    'x',
+
+    startX
+
+  );
+
+
+  fillBar.setAttribute(
+
+    'width',
+
+    Math.max(
+
+      0,
+
+      x-startX
+
+    )
+
+  );
+
+
+  hi.setAttribute(
+
+    'x1',
+
+    x
+
+  );
+
+
+  hi.setAttribute(
+
+    'x2',
+
+    x
+
+  );
+
+
+  dot.setAttribute(
+
+    'cx',
+
+    x
+
+  );
+
+
+  const bx =
+
+    Math.max(
+
+      165,
+
+      Math.min(
+
+        875,
+
+        x
+
+      )
+
+    ) - 55;
+
+
+  bubble.setAttribute(
+
+    'x',
+
+    bx
+
+  );
+
+
+  bubbleText.setAttribute(
+
+    'x',
+
+    bx+55
+
+  );
+
+
+  bubbleText.textContent =
+
+    `${fmt(units,2)} units`;
+
+
+  if(units>cap){
+
+    warning.textContent =
+
+      `This reference amount equals ${fmt(units,2)} units with ${fmt(bacMl,1)} mL BAC, which exceeds the selected ${cap}-unit syringe.`;
+
+    warning.classList.remove(
+
+      'hidden'
+
+    );
+
+  }else{
+
+    warning.classList.add(
+
+      'hidden'
+
+    );
+
+  }
+
+}
+
+
+function updateMath(){
+
+  const p =
+
+    products[product.value];
+
+
+  let bacMl =
+
+    Number(bac.value);
+
+
+  if(
+
+    !Number.isFinite(bacMl) ||
+
+    bacMl<=0
+
+  ){
+
+    bacMl=.1;
+
+  }
+
+
+  const concentration =
+
+    p.mg / bacMl;
+
+
+  const perUnit =
+
+    concentration / 100;
+
+
+  vial.textContent =
+
+    `${fmt(p.mg,1)} mg`;
+
+
+  conc.textContent =
+
+    `${fmt(concentration,3)} mg/mL`;
+
+
+  unit.textContent =
+
+    `${fmt(perUnit,4)} mg`;
+
+
+  ten.textContent =
+
+    `${fmt(perUnit*10,3)} mg`;
+
+
+  updateDose();
+
+}
+
+
+function updateProduct(){
+
+  const p =
+
+    products[product.value];
+
+
+  bac.value =
+
+    p.suggested.toFixed(1);
+
+
+  suggested.textContent =
+
+    `Suggested: ${p.suggested.toFixed(1)} mL`;
+
+
+  range.textContent =
+
+    p.range;
+
+
+  fillDoses(p);
+
+
+  fillList(
+
+    timing,
+
+    p.timing
+
+  );
+
+
+  fillList(
+
+    safety,
+
+    p.safety
+
+  );
+
+
+  updateMath();
+
+}
+
+
+product.addEventListener(
+
+  'change',
+
+  updateProduct
+
+);
+
+
+bac.addEventListener(
+
+  'input',
+
+  updateMath
+
+);
+
+
+protocol.addEventListener(
+
+  'change',
+
+  showPanel
+
+);
+
+
+dose.addEventListener(
+
+  'change',
+
+  updateDose
+
+);
+
+
+syringe.addEventListener(
+
+  'change',
+
+  updateDose
+
+);
+
+
+showPanel();
+
+updateProduct();
+
+})();
+
+</script>
+
+</body>
+</html>
