@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Your Name — Founder</title>
+<meta name="description" content="Founder of three companies. Find everything I'm building in one place.">
+<meta name="theme-color" content="#050505">
+<meta property="og:title" content="Your Name — Founder">
+<meta property="og:description" content="Founder of three companies. Find everything I'm building in one place.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050505;
+  --panel:rgba(20,18,26,.72);
+  --panel-solid:#121117;
+  --border:rgba(255,255,255,.08);
+  --border-hi:rgba(255,255,255,.18);
+  --text:#f7f5fb;
+  --muted:#a59fb0;
+  --pink:#ff68ee;
+  --aqua:#9bd5d5;
+  --blue:#80bfff;
+  --green:#9be7b0;
+  --radius:22px;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  min-height:100vh;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+
+/* ---------- ambient background ---------- */
+.bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.blob{position:absolute;width:60vmax;height:60vmax;border-radius:50%;filter:blur(90px);opacity:.28;animation:drift 26s ease-in-out infinite alternate}
+.blob.b1{background:var(--pink);top:-25vmax;left:-20vmax}
+.blob.b2{background:var(--aqua);bottom:-30vmax;right:-25vmax;animation-delay:-9s;opacity:.18}
+.blob.b3{background:#7b2a9a;top:30%;left:45%;width:40vmax;height:40vmax;animation-delay:-16s;opacity:.22}
+@keyframes drift{to{transform:translate(8vmax,6vmax) scale(1.1)}}
+.grain{position:absolute;inset:0;opacity:.06;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* ---------- layout ---------- */
+.wrap{position:relative;z-index:1;max-width:640px;margin:0 auto;padding:56px 16px 40px}
+
+/* ---------- top bar ---------- */
+.topbar{position:fixed;top:14px;right:14px;z-index:5;display:flex;gap:8px}
+.icon-btn{
+  width:42px;height:42px;border-radius:50%;display:grid;place-items:center;
+  background:var(--panel);border:1px solid var(--border);color:var(--text);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);cursor:pointer;
+  transition:border-color .2s,transform .2s;
+}
+.icon-btn:hover{border-color:var(--border-hi);transform:translateY(-1px)}
+.icon-btn svg{width:18px;height:18px}
+
+/* ---------- hero ---------- */
+.hero{text-align:center}
+.avatar{
+  width:108px;height:108px;margin:0 auto 18px;border-radius:50%;padding:3px;
+  background:conic-gradient(from 180deg,var(--pink),var(--aqua),var(--blue),var(--pink));
+  animation:spin 8s linear infinite;
+}
+.avatar-inner{
+  width:100%;height:100%;border-radius:50%;background:var(--panel-solid);
+  display:grid;place-items:center;overflow:hidden;font-size:38px;font-weight:800;letter-spacing:-.02em;
+  animation:spin 8s linear infinite reverse;
+}
+.avatar-inner img{width:100%;height:100%;object-fit:cover}
+@keyframes spin{to{transform:rotate(360deg)}}
+.name{font-size:clamp(28px,7vw,38px);font-weight:800;letter-spacing:-.03em;margin:0}
+.title{margin:8px 0 0;color:var(--muted);font-size:15px;font-weight:500}
+.bio{margin:14px auto 0;max-width:440px;line-height:1.55;color:#d6d1de;font-size:15px}
+.status{
+  display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:6px 12px;border-radius:999px;
+  background:rgba(155,231,176,.08);border:1px solid rgba(155,231,176,.25);color:var(--green);font-size:13px;font-weight:600;
+}
+.status .dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(155,231,176,.7);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 8px rgba(155,231,176,0)}100%{box-shadow:0 0 0 0 rgba(155,231,176,0)}}
+
+/* ---------- socials ---------- */
+.socials{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:26px 0 0}
+.social{
+  width:46px;height:46px;border-radius:14px;display:grid;place-items:center;
+  background:var(--panel);border:1px solid var(--border);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  transition:transform .2s,border-color .2s,background .2s;
+}
+.social svg{width:20px;height:20px;fill:currentColor}
+.social:hover{transform:translateY(-3px);border-color:var(--border-hi);background:rgba(255,255,255,.06)}
+
+/* ---------- section label ---------- */
+.label{display:flex;align-items:center;gap:12px;margin:44px 0 14px;color:var(--muted);font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.label::after{content:"";flex:1;height:1px;background:var(--border)}
+
+/* ---------- company cards ---------- */
+.companies{display:grid;gap:14px}
+.card{
+  --accent:var(--pink);
+  position:relative;display:block;padding:22px;border-radius:var(--radius);
+  background:var(--panel);border:1px solid var(--border);overflow:hidden;
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  transition:transform .25s ease,border-color .25s;
+  opacity:0;transform:translateY(14px);
+}
+.card.in{opacity:1;transform:none;transition:opacity .6s ease,transform .6s ease,border-color .25s}
+.card::before{ /* cursor spotlight */
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s;
+  background:radial-gradient(380px circle at var(--mx,50%) var(--my,50%),color-mix(in srgb,var(--accent) 22%,transparent),transparent 60%);
+}
+.card::after{ /* accent edge */
+  content:"";position:absolute;left:0;top:18px;bottom:18px;width:3px;border-radius:0 3px 3px 0;background:var(--accent);
+}
+.card:hover{border-color:color-mix(in srgb,var(--accent) 45%,transparent)}
+.card:hover::before{opacity:1}
+.card-top{position:relative;display:flex;align-items:center;gap:14px}
+.logo{
+  flex:none;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;overflow:hidden;
+  background:color-mix(in srgb,var(--accent) 16%,#0c0b10);border:1px solid color-mix(in srgb,var(--accent) 35%,transparent);
+  color:var(--accent);font-weight:800;font-size:20px;
+}
+.logo img{width:100%;height:100%;object-fit:cover}
+.card-head{min-width:0;flex:1}
+.card-name{margin:0;font-size:18px;font-weight:700;letter-spacing:-.01em}
+.card-role{margin:3px 0 0;color:var(--muted);font-size:13px;font-weight:500}
+.arrow{
+  flex:none;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;
+  border:1px solid var(--border);transition:transform .25s,background .25s,color .25s,border-color .25s;
+}
+.arrow svg{width:16px;height:16px}
+.card:hover .arrow{transform:rotate(-45deg);background:var(--accent);border-color:var(--accent);color:#0a0a0a}
+.card-desc{position:relative;margin:14px 0 0;color:#d6d1de;font-size:14.5px;line-height:1.55}
+.tags{position:relative;display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.tag{font-size:12px;font-weight:600;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid var(--border);color:#cfc9d8}
+.card-foot{position:relative;display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:16px;padding-top:14px;border-top:1px solid var(--border);font-size:13px;color:var(--muted)}
+.card-foot .url{font-weight:600;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.badge{flex:none;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 8px;border-radius:6px;color:var(--accent);background:color-mix(in srgb,var(--accent) 14%,transparent)}
+
+/* ---------- contact CTA ---------- */
+.cta{
+  display:flex;align-items:center;justify-content:center;gap:10px;margin-top:14px;padding:18px;border-radius:var(--radius);
+  font-weight:700;font-size:16px;color:#0a0a0a;
+  background:linear-gradient(120deg,var(--pink),#c9a2ff 50%,var(--aqua));background-size:200% 100%;
+  transition:background-position .5s,transform .2s;
+}
+.cta:hover{background-position:100% 0;transform:translateY(-2px)}
+.cta svg{width:18px;height:18px}
+
+footer{margin-top:40px;text-align:center;color:var(--muted);font-size:12.5px}
+
+/* ---------- share sheet ---------- */
+.sheet-backdrop{position:fixed;inset:0;z-index:10;background:rgba(0,0,0,.6);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:none;align-items:flex-end;justify-content:center;padding:16px}
+.sheet-backdrop.open{display:flex}
+@media (min-width:600px){.sheet-backdrop{align-items:center}}
+.sheet{width:100%;max-width:360px;background:var(--panel-solid);border:1px solid var(--border-hi);border-radius:24px;padding:22px;text-align:center;animation:rise .3s ease}
+@keyframes rise{from{transform:translateY(20px);opacity:0}}
+.sheet h3{margin:0 0 4px;font-size:17px}
+.sheet p{margin:0 0 16px;color:var(--muted);font-size:13px}
+.qr{width:200px;height:200px;margin:0 auto 16px;padding:12px;background:#fff;border-radius:16px}
+.qr canvas,.qr img{width:100%!important;height:100%!important}
+.sheet-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.btn{padding:12px;border-radius:12px;border:1px solid var(--border-hi);background:rgba(255,255,255,.04);color:var(--text);font:600 14px Inter,system-ui,sans-serif;cursor:pointer}
+.btn:hover{background:rgba(255,255,255,.08)}
+.btn.primary{background:var(--text);color:#0a0a0a;border-color:var(--text)}
+
+.toast{position:fixed;left:50%;bottom:28px;z-index:20;transform:translate(-50%,20px);opacity:0;padding:10px 16px;border-radius:999px;background:var(--text);color:#0a0a0a;font-size:13.5px;font-weight:600;transition:all .3s;pointer-events:none}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .card{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<div class="bg" aria-hidden="true">
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+  <div class="grain"></div>
+</div>
+
+<div class="topbar">
+  <button class="icon-btn" id="shareBtn" aria-label="Share this page">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v14"/></svg>
+  </button>
+</div>
+
+<main class="wrap">
+  <header class="hero">
+    <div class="avatar"><div class="avatar-inner" id="avatar"></div></div>
+    <h1 class="name" id="name"></h1>
+    <p class="title" id="title"></p>
+    <p class="bio" id="bio"></p>
+    <div class="status" id="status"><span class="dot"></span><span id="statusText"></span></div>
+    <nav class="socials" id="socials" aria-label="Social links"></nav>
+  </header>
+
+  <div class="label">My companies</div>
+  <section class="companies" id="companies"></section>
+
+  <a class="cta" id="cta">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+    <span id="ctaText"></span>
+  </a>
+
+  <footer id="footer"></footer>
+</main>
+
+<div class="sheet-backdrop" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+  <div class="sheet">
+    <h3 id="sheetTitle">Share this page</h3>
+    <p>Scan to open on another device</p>
+    <div class="qr" id="qr"></div>
+    <div class="sheet-actions">
+      <button class="btn" id="copyBtn">Copy link</button>
+      <button class="btn primary" id="nativeShare">Share…</button>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+/* =====================================================================
+   EDIT EVERYTHING HERE — this is the only part you need to touch.
+   ===================================================================== */
+const CONFIG = {
+  name: "Your Name",
+  title: "Founder · Builder · Operator",
+  bio: "I build companies at the intersection of health, tech and culture. Here's everything I'm working on.",
+  avatar: "",                 // URL to a photo, e.g. "me.jpg". Leave empty to show initials.
+  status: "Open to partnerships",  // set to "" to hide the green pill
+  email: "hello@example.com",
+
+  companies: [
+    {
+      name: "Company One",
+      role: "Founder & CEO",
+      description: "One or two sentences on what this company does and who it's for. Keep it punchy.",
+      url: "https://example.com",
+      logo: "",               // URL to a logo; empty = first letter
+      accent: "#ff68ee",
+      tags: ["Health", "DTC"],
+      badge: "Live",
+    },
+    {
+      name: "Company Two",
+      role: "Co-founder",
+      description: "What problem it solves, in plain language. Mention a proof point if you have one.",
+      url: "https://example.com",
+      logo: "",
+      accent: "#9bd5d5",
+      tags: ["Software", "B2B"],
+      badge: "Hiring",
+    },
+    {
+      name: "Company Three",
+      role: "Founder",
+      description: "The newest venture. Tease what's coming and invite people to get early access.",
+      url: "https://example.com",
+      logo: "",
+      accent: "#80bfff",
+      tags: ["Media", "Community"],
+      badge: "Coming soon",
+    },
+  ],
+
+  // Remove any line you don't use. Supported: instagram, tiktok, x, youtube, linkedin, facebook, github, email
+  socials: {
+    instagram: "https://instagram.com/yourhandle",
+    tiktok:    "https://tiktok.com/@yourhandle",
+    x:         "https://x.com/yourhandle",
+    youtube:   "https://youtube.com/@yourhandle",
+    linkedin:  "https://linkedin.com/in/yourhandle",
+  },
+
+  ctaText: "Work with me",
+};
+/* ===================================================================== */
+
+const ICONS = {
+  instagram:'<path d="M12 2.2c3.2 0 3.6 0 4.8.1 3.3.1 4.8 1.7 4.9 4.9.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 3.2-1.7 4.8-4.9 4.9-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-3.3-.1-4.8-1.7-4.9-4.9C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8C2.4 3.9 3.9 2.4 7.2 2.3 8.4 2.2 8.8 2.2 12 2.2zM12 0C8.7 0 8.3 0 7.1.1 2.7.3.3 2.7.1 7.1 0 8.3 0 8.7 0 12s0 3.7.1 4.9c.2 4.4 2.6 6.8 7 7C8.3 24 8.7 24 12 24s3.7 0 4.9-.1c4.4-.2 6.8-2.6 7-7 .1-1.2.1-1.6.1-4.9s0-3.7-.1-4.9c-.2-4.4-2.6-6.8-7-7C15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 1 0 0 12.4 6.2 6.2 0 0 0 0-12.4zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.8a1.4 1.4 0 1 0 0 2.9 1.4 1.4 0 0 0 0-2.9z"/>',
+  tiktok:'<path d="M19.6 6.7a4.8 4.8 0 0 1-3.8-4.2V2h-3.4v13.7a2.9 2.9 0 0 1-5.2 1.7 2.9 2.9 0 0 1 3.2-4.5V9.4a6.3 6.3 0 0 0-5.4 10.7 6.3 6.3 0 0 0 10.8-4.4V8.7a8.2 8.2 0 0 0 4.8 1.5V6.8l-1-.1z"/>',
+  x:'<path d="M18.2 2.3h3.4l-7.4 8.5L23 21.7h-6.8l-5.3-7-6.1 7H1.4l7.9-9L1 2.3h7l4.8 6.4 5.4-6.4zm-1.2 17.4h1.9L7.1 4.2H5.1l11.9 15.5z"/>',
+  youtube:'<path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/>',
+  linkedin:'<path d="M20.4 20.5h-3.6v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.7H9.4V9h3.4v1.6c.5-.9 1.6-1.8 3.4-1.8 3.6 0 4.3 2.4 4.3 5.5v6.2zM5.3 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2zm1.8 13.1H3.6V9h3.6v11.5zM22.2 0H1.8C.8 0 0 .8 0 1.7v20.6c0 .9.8 1.7 1.8 1.7h20.4c1 0 1.8-.8 1.8-1.7V1.7C24 .8 23.2 0 22.2 0z"/>',
+  facebook:'<path d="M24 12a12 12 0 1 0-13.9 11.9v-8.4H7.1V12h3V9.4c0-3 1.8-4.7 4.5-4.7 1.3 0 2.7.2 2.7.2v3h-1.5c-1.5 0-2 .9-2 1.9V12h3.4l-.5 3.5h-2.9v8.4A12 12 0 0 0 24 12z"/>',
+  github:'<path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.2-3.1-.1-.4-.5-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.9 18.3 5.2 18.3 5.2c.7 1.6.2 2.8.1 3.2.8.8 1.2 1.9 1.2 3.1 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3z"/>',
+  email:'<path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4.2-8 5-8-5V6l8 5 8-5v2.2z"/>',
+};
+const LABELS = {instagram:"Instagram",tiktok:"TikTok",x:"X",youtube:"YouTube",linkedin:"LinkedIn",facebook:"Facebook",github:"GitHub",email:"Email"};
+const ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const initials = n => n.split(/\s+/).map(w => w[0]).join("").slice(0,2).toUpperCase();
+const host = u => { try { return new URL(u).host.replace(/^www\./,""); } catch { return u; } };
+
+// Hero
+document.title = `${CONFIG.name} — ${CONFIG.title.split("·")[0].trim()}`;
+$("name").textContent = CONFIG.name;
+$("title").textContent = CONFIG.title;
+$("bio").textContent = CONFIG.bio;
+$("avatar").innerHTML = CONFIG.avatar ? `<img src="${esc(CONFIG.avatar)}" alt="${esc(CONFIG.name)}">` : esc(initials(CONFIG.name));
+if (CONFIG.status) $("statusText").textContent = CONFIG.status; else $("status").remove();
+
+// Socials
+$("socials").innerHTML = Object.entries(CONFIG.socials).filter(([k]) => ICONS[k]).map(([k, url]) =>
+  `<a class="social" href="${esc(url)}" target="_blank" rel="noopener" aria-label="${LABELS[k]}" title="${LABELS[k]}"><svg viewBox="0 0 24 24">${ICONS[k]}</svg></a>`
+).join("");
+
+// Companies
+$("companies").innerHTML = CONFIG.companies.map(c => `
+  <a class="card" href="${esc(c.url)}" target="_blank" rel="noopener" style="--accent:${esc(c.accent)}">
+    <div class="card-top">
+      <div class="logo">${c.logo ? `<img src="${esc(c.logo)}" alt="">` : esc(c.name[0])}</div>
+      <div class="card-head">
+        <h2 class="card-name">${esc(c.name)}</h2>
+        <p class="card-role">${esc(c.role)}</p>
+      </div>
+      <span class="arrow" aria-hidden="true">${ARROW}</span>
+    </div>
+    <p class="card-desc">${esc(c.description)}</p>
+    ${c.tags?.length ? `<div class="tags">${c.tags.map(t => `<span class="tag">${esc(t)}</span>`).join("")}</div>` : ""}
+    <div class="card-foot"><span class="url">${esc(host(c.url))}</span>${c.badge ? `<span class="badge">${esc(c.badge)}</span>` : ""}</div>
+  </a>`).join("");
+
+// CTA + footer
+$("cta").href = `mailto:${CONFIG.email}`;
+$("ctaText").textContent = CONFIG.ctaText;
+$("footer").textContent = `© ${new Date().getFullYear()} ${CONFIG.name}`;
+
+// Card entrance + cursor spotlight
+const cards = [...document.querySelectorAll(".card")];
+cards.forEach((card, i) => {
+  setTimeout(() => card.classList.add("in"), 120 + i * 110);
+  card.addEventListener("pointermove", e => {
+    const r = card.getBoundingClientRect();
+    card.style.setProperty("--mx", `${e.clientX - r.left}px`);
+    card.style.setProperty("--my", `${e.clientY - r.top}px`);
+  });
+});
+
+// Share sheet
+const toast = msg => { const t = $("toast"); t.textContent = msg; t.classList.add("show"); setTimeout(() => t.classList.remove("show"), 1800); };
+let qrMade = false;
+$("shareBtn").onclick = () => {
+  $("sheet").classList.add("open");
+  if (qrMade) return;
+  qrMade = true;
+  try {
+    new QRCode($("qr"), { text: location.href, width: 256, height: 256, colorDark: "#0a0a0a", colorLight: "#ffffff" });
+  } catch {
+    $("qr").remove();
+    document.querySelector(".sheet p").textContent = "Send it to anyone";
+  }
+};
+$("sheet").onclick = e => { if (e.target === $("sheet")) $("sheet").classList.remove("open"); };
+document.addEventListener("keydown", e => { if (e.key === "Escape") $("sheet").classList.remove("open"); });
+$("copyBtn").onclick = async () => { try { await navigator.clipboard.writeText(location.href); toast("Link copied"); } catch { toast(location.href); } };
+$("nativeShare").onclick = async () => {
+  if (navigator.share) { try { await navigator.share({ title: document.title, url: location.href }); } catch {} }
+  else { $("copyBtn").click(); }
+};
+</script>
+</body>
+</html>
