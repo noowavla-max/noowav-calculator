@@ -45,6 +45,7 @@ body{
   -webkit-font-smoothing:antialiased;overflow-x:hidden;
 }
 a{color:inherit;text-decoration:none}
+[hidden]{display:none!important}
 button{font:inherit;color:inherit}
 :focus-visible{outline:2px solid var(--volt-3);outline-offset:3px;border-radius:8px}
 
@@ -190,7 +191,6 @@ a.card:hover .c-btn svg{transform:translateX(3px)}
   border-color:rgba(255,157,247,.22);
 }
 .card[data-theme=noowav]:hover{border-color:rgba(255,157,247,.5);box-shadow:0 14px 50px -12px rgba(240,32,224,.45)}
-.card[data-theme=noowav] .wavebg{position:absolute;right:-30px;top:-10px;width:260px;opacity:.22;z-index:-1;color:var(--nw-magenta)}
 .card[data-theme=noowav] .badge{background:rgba(150,209,199,.12);color:var(--nw-mint);border:1px solid rgba(150,209,199,.35)}
 .card[data-theme=noowav] .c-notice{background:rgba(150,209,199,.07);border:1px dashed rgba(150,209,199,.35);color:#cdeee8}
 .card[data-theme=noowav] .c-btn{color:#140a17;background:linear-gradient(90deg,var(--nw-pink),#e9a8ff 45%,var(--nw-sky))}
@@ -209,6 +209,11 @@ a.card:hover .c-btn svg{transform:translateX(3px)}
 .card[data-theme=wavrx] .c-tagline{font-weight:600}
 .card[data-theme=wavrx] .c-notice{background:rgba(155,108,245,.08);border:1px solid rgba(155,108,245,.28);color:#ddd2ff}
 .card[data-theme=wavrx] .c-btn{color:#fff;background:var(--rx);box-shadow:inset 0 1px 0 rgba(255,255,255,.25)}
+
+.c-banner{display:flex;justify-content:center;align-items:center;margin:-4px 0 0;height:clamp(110px,34vw,150px);overflow:hidden}
+.c-banner img{display:block;height:100%;width:auto;max-width:100%;object-fit:contain;filter:drop-shadow(0 6px 24px rgba(240,32,224,.25))}
+.c-badgerow{display:flex;justify-content:center;margin-top:6px}
+@media (min-width:980px){.c-banner{height:140px}}
 
 /* --- tiles --- */
 .card.tile .c-head{min-height:0}

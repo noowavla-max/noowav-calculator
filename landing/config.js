@@ -36,8 +36,8 @@ window.NOOWAV_CONFIG = {
       size: "feature",
       theme: "noowav",
       name: "NOOWAV SOLUTIONS",
-      logo: "assets/logos/noowav-solutions.png",
-      logoPlate: true,     // shows the logo on a light panel (logo has black outlines)
+      logo: "assets/logos/noowav-solutions.webp",
+      banner: true,        // wide logo shown across the top of the card
       badge: "Research use only",
       tagline: "Research materials. Transparency. Community.",
       description: "Third-party tested, research-use-only laboratory materials with COAs available.",

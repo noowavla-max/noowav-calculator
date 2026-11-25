@@ -28,7 +28,6 @@
     people: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg>',
     link: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg>',
   };
-  const NOOWAV_WAVE = '<svg class="wavebg" viewBox="0 0 260 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M0 70c30 0 30-50 60-50s30 90 60 90 30-90 60-90 30 50 60 50 30-30 30-30"/><path d="M0 80c30 0 30-50 60-50s30 90 60 90 30-90 60-90 30 50 60 50" opacity=".6"/><path d="M0 90c30 0 30-50 60-50s30 90 60 90 30-90 60-90 30 50 60 50" opacity=".3"/></svg>';
 
   /* ---------------- analytics (opt-in, cookieless) ---------------- */
   const optedOut = navigator.doNotTrack === "1" || window.doNotTrack === "1" || navigator.globalPrivacyControl === true;
@@ -98,9 +97,13 @@
     if (l.size === "feature") {
       const badgeIcon = theme === "noowav" ? UI.flask : theme === "wavrx" ? UI.steth : "";
       return "<" + tag + ' class="card feature' + (live ? "" : " soon") + '" data-theme="' + theme + '"' + attrs + ">" +
-        (theme === "noowav" ? NOOWAV_WAVE : theme === "wavrx" ? '<span class="rxline"></span>' : "") +
-        '<div class="c-head"><div class="c-logo">' + logoHtml(l) + "</div>" +
-        (l.badge ? '<span class="badge">' + badgeIcon + esc(l.badge) + "</span>" : "") + "</div>" +
+        (theme === "wavrx" ? '<span class="rxline"></span>' : "") +
+        (l.banner && l.logo
+          ? '<div class="c-banner" data-logo><img src="' + esc(l.logo) + '" alt="' + esc(l.name) + '" decoding="async"></div>' +
+            '<div class="c-head" data-fallback hidden><span class="wordmark">' + esc(l.name) + "</span></div>" +
+            (l.badge ? '<div class="c-badgerow"><span class="badge">' + badgeIcon + esc(l.badge) + "</span></div>" : "")
+          : '<div class="c-head"><div class="c-logo">' + logoHtml(l) + "</div>" +
+            (l.badge ? '<span class="badge">' + badgeIcon + esc(l.badge) + "</span>" : "") + "</div>") +
         (l.tagline ? '<h2 class="c-tagline">' + esc(l.tagline) + "</h2>" : "") +
         (l.description ? '<p class="c-desc">' + esc(l.description) + "</p>" : "") +
         (l.notice ? '<p class="c-notice">' + (theme === "wavrx" ? UI.info : UI.shield) + "<span>" + esc(l.notice) + "</span></p>" : "") +

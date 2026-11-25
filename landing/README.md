@@ -30,7 +30,7 @@ Save the official files with these names (PNG with a transparent background is b
 
 | File | Used on |
 |---|---|
-| `assets/logos/noowav-solutions.png` | NOOWAV SOLUTIONS card (shown on a light panel) |
+| `assets/logos/noowav-solutions.webp` (added) | NOOWAV SOLUTIONS card (banner across the top) |
 | `assets/logos/wavrx.png` | WAV RX card (white + purple, made for dark backgrounds) |
 | `assets/logos/nooworld.webp` (added) | NOOWAV HQ tile (shown as a circle) |
 
