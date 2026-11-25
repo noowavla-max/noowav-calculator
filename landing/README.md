@@ -37,20 +37,17 @@ Save the official files with these names (PNG with a transparent background is b
 Until a file is there, the card shows the brand name as plain text (or an icon for tiles).
 For a profile photo, add e.g. `assets/logos/profile.jpg` and set `profile.avatar`.
 
-## Free hosting
+## Hosting
 
-**Option A: GitHub Pages from this repo (quickest).** Repo → Settings → Pages → Deploy from branch → `main` / root.
-Calculator: `https://noowavla-max.github.io/noowav-calculator/`, landing: `https://noowavla-max.github.io/noowav-calculator/landing/`.
+Live at **https://mrnoowav.noowavla.workers.dev** (Cloudflare Workers, free for static assets).
 
-**Option B: shortest free URL.** Create a repo named `noowavla-max.github.io`, copy the *contents* of `landing/` into it, and enable Pages. The page is then at `https://noowavla-max.github.io/`.
+Cloudflare is connected to this repo: every push to `main` that changes `landing/` deploys automatically
+(Worker `mrnoowav`, root directory `landing`, settings in `wrangler.jsonc`).
+Files listed in `.assetsignore` are never published.
 
-**Option C: your own domain** (e.g. `links.noowav.com`). Works with A or B (add a custom domain in Pages settings + a CNAME record), or drag this folder into Cloudflare Pages / Netlify (both free).
-
-**After deploying**, put the final address in:
+If the address changes (e.g. a custom domain like `links.noowav.com`), update:
 1. `config.js` → `siteUrl`
-2. `index.html` → the `canonical`, `og:url`, `og:image` and `twitter:image` tags (the image tags must be full `https://` addresses)
-
-Then check the share preview with a tool like opengraph.xyz.
+2. `index.html` → the `canonical`, `og:url`, `og:image` and `twitter:image` tags
 
 ## Analytics (optional, privacy-conscious)
 
