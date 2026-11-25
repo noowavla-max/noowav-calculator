@@ -216,6 +216,21 @@ a.card:hover .c-btn svg{transform:translateX(3px)}
 .c-badgerow{display:flex;justify-content:center;margin-top:6px}
 @media (min-width:980px){.c-banner{height:140px}}
 
+/* --- theme: NOO WORLD (apparel: raw black & white, streetwear) --- */
+.card[data-theme=nooworld]{
+  --spot:rgba(255,255,255,.10);
+  background:
+    repeating-linear-gradient(135deg,rgba(255,255,255,.025) 0 2px,transparent 2px 7px),
+    rgba(8,8,10,.86);
+  border-color:rgba(255,255,255,.2);
+}
+.card[data-theme=nooworld]:hover{border-color:rgba(255,255,255,.5);box-shadow:0 14px 44px -14px rgba(255,255,255,.18)}
+.card[data-theme=nooworld] .c-logo .round{width:66px;height:66px;box-shadow:0 0 0 2px #fff,0 6px 22px rgba(0,0,0,.6)}
+.card[data-theme=nooworld] .c-logo .round img{width:60px;height:60px}
+.card[data-theme=nooworld] .badge{background:#fff;color:#0a0a0a;border:1px solid #fff}
+.card[data-theme=nooworld] .c-tagline{font-family:var(--display);font-weight:800;text-transform:uppercase;letter-spacing:.02em;font-size:15px}
+.card[data-theme=nooworld] .c-btn{background:#fff;color:#0a0a0a}
+
 /* --- tiles --- */
 .card.tile .c-head{min-height:0}
 .card.tile .c-name{margin:12px 0 0;font-family:var(--display);font-weight:600;font-size:14px;line-height:1.25}

@@ -26,6 +26,7 @@
     chev: '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>',
     calculator: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h.01M16 19h.01"/></svg>',
     people: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg>',
+    tag: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.4 4.6 12 3H4v8l8.6 8.6a2 2 0 0 0 2.8 0l5-5a2 2 0 0 0 0-2.8z"/><circle cx="8" cy="8" r="1.5"/></svg>',
     link: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg>',
   };
 
@@ -95,7 +96,7 @@
     const btnLabel = live ? esc(l.button || "Open") : "Coming soon";
 
     if (l.size === "feature") {
-      const badgeIcon = theme === "noowav" ? UI.flask : theme === "wavrx" ? UI.steth : "";
+      const badgeIcon = theme === "noowav" ? UI.flask : theme === "wavrx" ? UI.steth : theme === "nooworld" ? UI.tag : "";
       return "<" + tag + ' class="card feature' + (live ? "" : " soon") + '" data-theme="' + theme + '"' + attrs + ">" +
         (theme === "wavrx" ? '<span class="rxline"></span>' : "") +
         (l.banner && l.logo
@@ -132,9 +133,11 @@
   let html = "";
   let lastFeature = -1;
   links.forEach((l, i) => { if (l.size === "feature") lastFeature = i; });
+  const cmpIndex = links.findIndex((l) => l.id === C.comparisonAfter);
+  const cmpAt = cmpIndex >= 0 ? cmpIndex : lastFeature;
   links.forEach((l, i) => {
     html += cardHtml(l);
-    if (i === lastFeature && C.showComparison) html += comparison;
+    if (i === cmpAt && C.showComparison) html += comparison;
   });
   html += "<footer><p>" + esc(C.disclaimer) + '</p><p class="copy">© ' + new Date().getFullYear() + " " + esc(P.name) + "</p></footer>";
   $("links").innerHTML = html;

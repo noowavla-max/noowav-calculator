@@ -59,6 +59,18 @@ window.NOOWAV_CONFIG = {
       url: "https://wavrx.whoosh.health",
     },
     {
+      id: "nooworld",
+      size: "feature",
+      theme: "nooworld",
+      name: "NOO WORLD",
+      logo: "assets/logos/nooworld.webp",
+      logoRound: true,
+      badge: "Apparel",
+      tagline: "The NOOWAV apparel line.",
+      button: "Shop NOO WORLD",
+      url: "",             // paste the shop URL here; empty shows "Coming soon"
+    },
+    {
       id: "hq",
       hidden: true,        // off for now: invite or purchase only
       size: "tile",
@@ -82,8 +94,9 @@ window.NOOWAV_CONFIG = {
     },
   ],
 
-  // Shows a "Research use vs. prescribed" explainer under the brand cards.
+  // Shows a "Research use vs. prescribed" explainer right after this link.
   showComparison: true,
+  comparisonAfter: "wavrx",
 
   /* Socials: leave "" to hide. Supported: instagram, tiktok, youtube,
      telegram, discord, x, facebook, threads, email */
