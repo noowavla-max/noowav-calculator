@@ -3,3 +3,4 @@ Put the official logo files here:
   wavrx.png
   nooworld.png
 See ../../README.md for details.
+  mr-noowav.webp  (profile badge, in use)

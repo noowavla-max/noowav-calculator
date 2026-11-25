@@ -130,6 +130,17 @@ button{font:inherit;color:inherit}
 .social svg{width:18px;height:18px;fill:currentColor}
 .social:hover{transform:translateY(-2px);border-color:rgba(209,139,255,.5);box-shadow:0 6px 22px rgba(162,75,255,.3)}
 
+/* badge mode: the profile image already carries the name */
+.hero.has-badge .avatar{width:min(240px,64vw);height:auto;aspect-ratio:1;max-width:100%;margin:-6px auto 4px;background:none;box-shadow:none}
+.hero.has-badge .avatar::before{display:none}
+.hero.has-badge .avatar img{border-radius:0;
+  -webkit-mask-image:radial-gradient(circle at 50% 50%,#000 64%,transparent 71%);mask-image:radial-gradient(circle at 50% 50%,#000 64%,transparent 71%);
+  filter:drop-shadow(0 0 30px rgba(162,75,255,.5));animation:badgeIn .8s cubic-bezier(.2,.9,.3,1.2) both}
+@keyframes badgeIn{from{transform:scale(.9);opacity:.4}}
+.hero.has-badge .name{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.hero.has-badge .title{margin-top:0}
+@media (min-width:980px){.hero.has-badge .avatar{width:300px;margin:-10px 0 6px}}
+
 /* ---------- links ---------- */
 .links{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px}
 @media (min-width:980px){.links{margin-top:0}}

@@ -70,7 +70,12 @@
   $("title").textContent = P.title;
   $("bio").textContent = P.bio;
   $("tagline").textContent = P.tagline;
-  $("avatar").innerHTML = P.avatar ? '<img src="' + esc(P.avatar) + '" alt="' + esc(P.name) + '">' : '<span class="mark">N</span>';
+  if (P.avatar) {
+    $("avatar").innerHTML = '<img src="' + esc(P.avatar) + '" alt="' + esc(P.name) + ' badge" width="560" height="560" fetchpriority="high">';
+    document.querySelector(".hero").classList.add("has-badge");
+  } else {
+    $("avatar").innerHTML = '<span class="mark">N</span>';
+  }
 
   /* ---------------- socials (empty = hidden) ---------------- */
   $("socials").innerHTML = Object.entries(C.socials || {})
