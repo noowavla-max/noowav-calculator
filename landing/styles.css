@@ -57,14 +57,13 @@ button{font:inherit;color:inherit}
     linear-gradient(#060509, #040406 60%, #07050c);
 }
 .orb{position:absolute;border-radius:50%;filter:blur(70px);will-change:transform}
-.orb.o1{width:340px;height:340px;left:-120px;top:120px;background:rgba(162,75,255,.30);animation:float 18s ease-in-out infinite alternate}
+.orb.o1{width:340px;height:340px;left:-120px;top:60px;background:rgba(162,75,255,.18);animation:float 18s ease-in-out infinite alternate}
 .orb.o2{width:280px;height:280px;right:-110px;top:-60px;background:rgba(209,139,255,.22);animation:float 22s ease-in-out infinite alternate-reverse}
 @keyframes float{to{transform:translate(60px,80px) scale(1.15)}}
 
-.skyline{position:absolute;left:0;right:0;bottom:46px;width:100%;height:auto;min-width:900px;opacity:.11;color:#b99aff}
-@media (min-width:900px){.skyline{left:50%;transform:translateX(-50%);max-width:1600px}}
+.city{position:absolute;inset:0;width:100%;height:100%;display:block}
 
-.waves{position:absolute;left:0;right:0;bottom:0;height:120px;overflow:hidden}
+.waves{position:absolute;left:0;right:0;bottom:0;height:120px;overflow:hidden;opacity:.7}
 .waves svg{position:absolute;bottom:0;left:0;width:200%;height:100%;animation:wave 16s linear infinite}
 .waves svg.w2{animation-duration:24s;animation-direction:reverse;opacity:.6;bottom:-8px}
 .waves svg.w3{animation-duration:32s;opacity:.35;bottom:10px}
@@ -253,9 +252,9 @@ a.card:hover .c-btn svg{transform:translateX(3px)}
 @media (max-width:360px){.cmp{grid-template-columns:1fr}}
 
 /* ---------- footer ---------- */
-footer{grid-column:1/-1;margin-top:26px;text-align:center;color:var(--dim);font-size:11.5px;line-height:1.55}
+footer{grid-column:1/-1;margin-top:18px;padding:14px 16px;border-radius:16px;text-align:center;color:#b3aac4;font-size:11.5px;line-height:1.55;background:rgba(6,4,10,.78);border:1px solid var(--line);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
 footer p{margin:0 auto;max-width:560px}
-footer .copy{margin-top:10px;font-family:var(--mono);letter-spacing:.06em;font-size:10.5px}
+footer .copy{margin-top:8px;color:var(--dim);font-family:var(--mono);letter-spacing:.06em;font-size:10.5px}
 
 /* ---------- share sheet ---------- */
 .sheet-wrap{position:fixed;inset:0;z-index:20;display:none;align-items:flex-end;justify-content:center;padding:12px;background:rgba(2,1,6,.66);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
@@ -285,3 +284,5 @@ footer .copy{margin-top:10px;font-family:var(--mono);letter-spacing:.06em;font-s
   .card{opacity:1;transform:none}
 }
 .card[data-theme=hq] .ticon{background:rgba(162,75,255,.16);border:1px solid rgba(209,139,255,.35);color:var(--volt-3)}
+
+.hero .bio,.hero .title{text-shadow:0 1px 12px rgba(0,0,0,.9),0 0 2px rgba(0,0,0,.8)}

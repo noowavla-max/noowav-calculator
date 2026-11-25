@@ -27,6 +27,7 @@ window.NOOWAV_CONFIG = {
      LINKS
      size:  "feature" = big card, "tile" = small half-width card
      theme: "noowav" | "wavrx" | "hq" | "lab" | "default"
+     hidden: true keeps a link in this file but off the page
      Add new links by copying a block. Order here = order on the page.
      --------------------------------------------------------------- */
   links: [
@@ -59,17 +60,17 @@ window.NOOWAV_CONFIG = {
     },
     {
       id: "hq",
+      hidden: true,        // off for now: invite or purchase only
       size: "tile",
       theme: "hq",
       name: "NOOWAV HQ",
-      logo: "assets/logos/nooworld.webp",
-      logoRound: true,
       description: "Your all-access pass to the NOOWAV community. Rewards, updates, orders, and more.",
       button: "Access HQ",
-      url: "",             // TODO: paste the HQ app URL here
+      url: "",             // the HQ app URL, if you turn this back on
     },
     {
       id: "calculator",
+      hidden: true,        // off for now
       size: "tile",
       theme: "lab",
       name: "Peptide Calculator",

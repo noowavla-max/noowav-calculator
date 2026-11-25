@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Mr. NOOWAV — Peptides, Wellness &amp; Research</title>
-<meta name="description" content="Know your options. Ride the WAV. NOOWAV Solutions, WAV RX, NOOWAV HQ and the peptide research calculator, all in one place.">
+<meta name="description" content="Know your options. Ride the WAV. NOOWAV Solutions research materials and WAV RX telehealth, all in one place.">
 <meta name="theme-color" content="#040406">
 <meta name="color-scheme" content="dark">
 
@@ -13,14 +13,14 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Mr. NOOWAV">
 <meta property="og:title" content="Mr. NOOWAV — Know your options. Ride the WAV.">
-<meta property="og:description" content="NOOWAV Solutions, WAV RX, NOOWAV HQ and the peptide research calculator, all in one place.">
+<meta property="og:description" content="NOOWAV Solutions research materials and WAV RX telehealth, all in one place.">
 <meta property="og:url" content="https://noowavla-max.github.io/noowav-calculator/landing/">
 <meta property="og:image" content="https://noowavla-max.github.io/noowav-calculator/landing/assets/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Mr. NOOWAV — Know your options. Ride the WAV.">
-<meta name="twitter:description" content="NOOWAV Solutions, WAV RX, NOOWAV HQ and the peptide research calculator, all in one place.">
+<meta name="twitter:description" content="NOOWAV Solutions research materials and WAV RX telehealth, all in one place.">
 <meta name="twitter:image" content="https://noowavla-max.github.io/noowav-calculator/landing/assets/og-image.png">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23040406'/%3E%3Cpath d='M8 38c6 0 6-12 12-12s6 12 12 12 6-12 12-12 6 12 12 12' fill='none' stroke='%23a24bff' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
 
@@ -32,39 +32,9 @@
 
 <!-- ============ background scene (decorative) ============ -->
 <div class="scene" aria-hidden="true">
-  <div class="orb o1"></div><div class="orb o2"></div>
-
-  <!-- faint Los Angeles skyline -->
-  <svg class="skyline" viewBox="0 0 1440 200" preserveAspectRatio="xMidYMax meet" fill="currentColor">
-    <!-- low-rise left -->
-    <rect x="0" y="176" width="70" height="24"/><rect x="74" y="168" width="40" height="32"/>
-    <rect x="300" y="170" width="54" height="30"/><rect x="358" y="160" width="30" height="40"/>
-    <rect x="392" y="150" width="38" height="50"/><rect x="434" y="164" width="44" height="36"/>
-    <!-- downtown cluster -->
-    <rect x="482" y="130" width="34" height="70"/><rect x="490" y="122" width="18" height="10"/>
-    <rect x="520" y="112" width="40" height="88"/>
-    <rect x="564" y="92" width="34" height="108"/><rect x="572" y="84" width="18" height="10"/>
-    <rect x="602" y="70" width="38" height="130"/><rect x="606" y="62" width="30" height="10"/>
-    <!-- Wilshire Grand: tapered sail + spire -->
-    <path d="M646 200V40l20-14 22 14v160z"/><rect x="665" y="2" width="2.5" height="26"/>
-    <rect x="692" y="58" width="36" height="142"/>
-    <!-- US Bank Tower: stepped cylinder + crown -->
-    <path d="M734 200V36h50v164z"/><path d="M740 36V24h38v12z"/><path d="M748 24v-8h22v8z"/>
-    <rect x="790" y="48" width="44" height="152"/>
-    <rect x="838" y="80" width="30" height="120"/><rect x="844" y="72" width="18" height="10"/>
-    <rect x="872" y="100" width="40" height="100"/>
-    <rect x="916" y="120" width="30" height="80"/><rect x="950" y="138" width="36" height="62"/>
-    <!-- low-rise right -->
-    <rect x="990" y="156" width="46" height="44"/><rect x="1040" y="166" width="38" height="34"/>
-    <rect x="1250" y="170" width="60" height="30"/><rect x="1370" y="174" width="70" height="26"/>
-    <!-- palms -->
-    <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
-      <g transform="translate(150 200)"><path d="M0 0C3-40-3-90 6-140"/><path d="M6-140q-22-6-38 10M6-140q-16-16-34-14M6-140q20-8 36 8M6-140q16-16 34-12M6-140q2-18-8-26"/></g>
-      <g transform="translate(222 200)"><path d="M0 0C-2-36 2-70-4-108"/><path d="M-4-108q-20-4-32 10M-4-108q-14-14-30-10M-4-108q18-6 30 8M-4-108q14-14 28-10"/></g>
-      <g transform="translate(1150 200)"><path d="M0 0C-3-44 3-96-6-150"/><path d="M-6-150q-22-6-38 10M-6-150q-16-16-34-14M-6-150q20-8 36 8M-6-150q16-16 34-12M-6-150q2-18 8-26"/></g>
-      <g transform="translate(1210 200)"><path d="M0 0C2-34-2-68 4-102"/><path d="M4-102q-20-4-32 10M4-102q-14-14-30-10M4-102q18-6 30 8M4-102q14-14 28-10"/></g>
-    </g>
-  </svg>
+  <div class="orb o1"></div>
+  <!-- gritty city skyline (drawn by skyline.js) -->
+  <canvas id="city" class="city"></canvas>
 
   <!-- animated waves -->
   <div class="waves">
@@ -117,6 +87,7 @@
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script src="config.js"></script>
+<script src="skyline.js" defer></script>
 <script src="assets/vendor/qrcode.js" defer></script>
 <script src="app.js" defer></script>
 </body>

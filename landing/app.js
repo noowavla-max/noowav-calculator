@@ -125,7 +125,7 @@
       '<div class="rx"><h4>Prescribed care</h4><ul><li>Telehealth with a licensed provider</li><li>Evaluation comes first</li><li>Treatment only if prescribed</li><li>Personalized to you</li></ul></div>' +
     "</div></details>";
 
-  const links = C.links || [];
+  const links = (C.links || []).filter((l) => !l.hidden);
   let html = "";
   let lastFeature = -1;
   links.forEach((l, i) => { if (l.size === "feature") lastFeature = i; });
