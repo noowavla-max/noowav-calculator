@@ -10,7 +10,7 @@
 window.NOOWAV_CONFIG = {
   // The public address of THIS page. Used for the QR code, copy link and
   // share. Leave "" to use whatever address the page is opened at.
-  siteUrl: "",
+  siteUrl: "https://mrnoowav.pages.dev/",
 
   profile: {
     name: "Mr. NOOWAV",
