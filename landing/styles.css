@@ -220,7 +220,7 @@ a.card:hover .c-btn svg{transform:translateX(3px)}
 .card[data-theme=nooworld]{
   --spot:rgba(124,77,180,.22);
   background:
-    linear-gradient(180deg,rgba(6,5,8,.15) 0%,rgba(6,5,8,.55) 55%,rgba(6,5,8,.85) 100%),
+    linear-gradient(180deg,rgba(6,5,8,.1) 0%,rgba(6,5,8,.45) 50%,rgba(6,5,8,.55) 100%),
     radial-gradient(80% 60% at 100% 0%,rgba(140,70,220,.22),transparent 65%),
     radial-gradient(70% 70% at 0% 100%,rgba(110,50,180,.25),transparent 70%),
     url(assets/textures/brick.webp) center/cover,
@@ -236,6 +236,15 @@ a.card:hover .c-btn svg{transform:translateX(3px)}
 .card[data-theme=nooworld] .c-desc{color:#c4bece;text-shadow:0 1px 8px rgba(0,0,0,.8)}
 .card[data-theme=nooworld] .c-btn{background:rgba(22,20,27,.9);color:#fff;border:1px solid rgba(160,120,220,.55);box-shadow:inset 0 -2px 0 rgba(124,77,180,.6)}
 a.card[data-theme=nooworld]:hover .c-btn{background:#2a2333}
+/* drifting purple smoke over the brick */
+.smoke{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none;border-radius:inherit}
+.smoke i{position:absolute;left:0;bottom:-4%;width:200%;height:115%;
+  background:url(assets/textures/smoke.webp) repeat-x left bottom/50% 100%;
+  opacity:1;mix-blend-mode:screen;animation:smokeDrift 46s linear infinite;will-change:transform}
+.smoke i + i{height:90%;bottom:-8%;opacity:.75;transform:scaleX(-1);animation:smokeDriftRev 68s linear infinite}
+@keyframes smokeDrift{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+@keyframes smokeDriftRev{from{transform:translate3d(-50%,0,0) scaleX(-1)}to{transform:translate3d(0,0,0) scaleX(-1)}}
+.card[data-theme=nooworld]:hover .smoke i{filter:brightness(1.25)}
 
 /* --- tiles --- */
 .card.tile .c-head{min-height:0}
