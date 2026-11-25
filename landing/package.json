@@ -1,0 +1,8 @@
+{
+  "name": "mrnoowav-landing",
+  "private": true,
+  "description": "Static link-in-bio page. Nothing to compile; Cloudflare deploys the files as-is.",
+  "scripts": {
+    "build": "echo \"Static site: nothing to build\""
+  }
+}
