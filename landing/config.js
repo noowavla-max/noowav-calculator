@@ -102,8 +102,8 @@ window.NOOWAV_CONFIG = {
   /* Socials: leave "" to hide. Supported: instagram, tiktok, youtube,
      telegram, discord, x, facebook, threads, email */
   socials: {
+    tiktok: "https://www.tiktok.com/@mrnoowav",
     instagram: "",
-    tiktok: "",
     youtube: "",
     telegram: "",
     discord: "",
