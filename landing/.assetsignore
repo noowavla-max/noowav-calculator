@@ -4,3 +4,4 @@ README.md
 assets/logos/README.txt
 .wrangler
 package.json
+.gitignore
