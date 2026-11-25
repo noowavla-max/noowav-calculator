@@ -103,7 +103,7 @@ window.NOOWAV_CONFIG = {
      telegram, discord, x, facebook, threads, email */
   socials: {
     tiktok: "https://www.tiktok.com/@mrnoowav",
-    instagram: "",
+    instagram: "https://www.instagram.com/mrnoowav/",
     youtube: "",
     telegram: "",
     discord: "",
