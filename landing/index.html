@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Mr. NOOWAV — Peptides, Wellness &amp; Research</title>
+<meta name="description" content="Know your options. Ride the WAV. NOOWAV Solutions research materials, WAV RX telehealth and NOOWORLD apparel, all in one place.">
+<meta name="theme-color" content="#040406">
+<meta name="color-scheme" content="dark">
+
+<!-- Social sharing previews. Replace SITE_URL below with this page's final public address. -->
+<link rel="canonical" href="https://mrnoowav.noowavla.workers.dev/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Mr. NOOWAV">
+<meta property="og:title" content="Mr. NOOWAV — Know your options. Ride the WAV.">
+<meta property="og:description" content="NOOWAV Solutions research materials, WAV RX telehealth and NOOWORLD apparel, all in one place.">
+<meta property="og:url" content="https://mrnoowav.noowavla.workers.dev/">
+<meta property="og:image" content="https://mrnoowav.noowavla.workers.dev/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mr. NOOWAV — Know your options. Ride the WAV.">
+<meta name="twitter:description" content="NOOWAV Solutions research materials, WAV RX telehealth and NOOWORLD apparel, all in one place.">
+<meta name="twitter:image" content="https://mrnoowav.noowavla.workers.dev/assets/og-image.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23040406'/%3E%3Cpath d='M8 38c6 0 6-12 12-12s6 12 12 12 6-12 12-12 6 12 12 12' fill='none' stroke='%23a24bff' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
+
+<link rel="preload" href="assets/fonts/unbounded-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ============ background scene (decorative) ============ -->
+<div class="scene" aria-hidden="true">
+  <div class="orb o1"></div>
+  <!-- gritty city skyline (drawn by skyline.js) -->
+  <canvas id="city" class="city"></canvas>
+
+  <!-- animated waves -->
+  <div class="waves">
+    <svg viewBox="0 0 2880 120" preserveAspectRatio="none"><defs><linearGradient id="wg" x1="0" x2="1"><stop offset="0" stop-color="#7b2bff"/><stop offset=".5" stop-color="#f020e0"/><stop offset="1" stop-color="#7b2bff"/></linearGradient></defs>
+      <path d="M0 70Q180 20 360 70T720 70T1080 70T1440 70T1800 70T2160 70T2520 70T2880 70" fill="none" stroke="url(#wg)" stroke-width="2" opacity=".55"/></svg>
+    <svg class="w2" viewBox="0 0 2880 120" preserveAspectRatio="none">
+      <path d="M0 80Q240 40 480 80T960 80T1440 80T1920 80T2400 80T2880 80V120H0z" fill="#a24bff" opacity=".10"/></svg>
+    <svg class="w3" viewBox="0 0 2880 120" preserveAspectRatio="none">
+      <path d="M0 60Q120 30 240 60T480 60T720 60T960 60T1200 60T1440 60T1680 60T1920 60T2160 60T2400 60T2640 60T2880 60" fill="none" stroke="#d18bff" stroke-width="1.5"/></svg>
+  </div>
+  <div class="grain"></div>
+</div>
+
+<!-- ============ content ============ -->
+<div class="top">
+  <button class="share-btn" id="shareBtn" type="button" aria-haspopup="dialog">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v14"/></svg>
+    Share
+  </button>
+</div>
+
+<main class="page">
+  <header class="hero">
+    <div class="avatar" id="avatar"></div>
+    <h1 class="name" id="name">Mr. NOOWAV</h1>
+    <p class="title" id="title"></p>
+    <p class="bio" id="bio"></p>
+    <div class="tagline"><span><svg viewBox="0 0 22 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 5c2.5 0 2.5-4 5-4s2.5 8 5 8 2.5-8 5-8 2.5 4 5 4"/></svg><span id="tagline"></span></span></div>
+    <nav class="socials" id="socials" aria-label="Social links"></nav>
+  </header>
+
+  <section class="links" id="links" aria-label="Brands and resources"></section>
+</main>
+
+<!-- ============ share sheet ============ -->
+<div class="sheet-wrap" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+  <div class="sheet">
+    <button class="x" id="sheetClose" type="button" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    <h2 id="sheetTitle">Share Mr. NOOWAV</h2>
+    <p class="sub">Scan the code or send the link</p>
+    <div class="qr"><canvas id="qr" width="256" height="256" aria-label="QR code for this page" role="img"></canvas></div>
+    <div class="url-pill" id="urlPill"></div>
+    <div class="acts">
+      <button class="act" id="copyBtn" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg>Copy link</button>
+      <button class="act" id="nativeBtn" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg>Share…</button>
+      <button class="act" id="qrSave" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></svg>Save QR</button>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="config.js"></script>
+<script src="skyline.js" defer></script>
+<script src="assets/vendor/qrcode.js" defer></script>
+<script src="app.js" defer></script>
+</body>
+</html>

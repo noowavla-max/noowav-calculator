@@ -1,0 +1,222 @@
+/* Builds the page from config.js. You normally don't need to edit this file. */
+(function () {
+  "use strict";
+  const C = window.NOOWAV_CONFIG;
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+  /* Brand icons: Simple Icons (CC0). */
+  const BRAND = {"instagram":"M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077",
+    "tiktok":"M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z",
+    "youtube":"M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z",
+    "telegram":"M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z",
+    "discord":"M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z",
+    "x":"M14.234 10.162 22.977 0h-2.072l-7.591 8.824L7.251 0H.258l9.168 13.343L.258 24H2.33l8.016-9.318L16.749 24h6.993zm-2.837 3.299-.929-1.329L3.076 1.56h3.182l5.965 8.532.929 1.329 7.754 11.09h-3.182z",
+    "facebook":"M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z",
+    "threads":"M18.263 11.097c-.03-3.486-1.92-5.586-5.111-5.586-2.13 0-3.922.963-4.863 2.499l2.062 1.438c.535-.843 1.272-1.543 2.628-1.543 1.528 0 2.318.85 2.544 2.431a15 15 0 0 0-2.236-.173c-4.125 0-6.068 1.867-6.068 4.336s1.943 3.99 4.804 3.99c3.139 0 5.013-2.115 5.781-4.735.798.361 1.348 1.204 1.348 2.47 0 3.387-3.907 5.232-7.22 5.232-4.885 0-8.077-3.207-8.077-8.424 0-6.392 4.223-10.487 9.9-10.487 3.808 0 5.69 1.671 6.97 3.914l2.108-1.475C21.44 2.078 18.331 0 13.663 0 6.227 0 1.168 5.277 1.168 12.934c0 7 4.953 11.066 10.856 11.066 4.878 0 9.809-2.846 9.809-7.716 0-2.545-1.46-4.231-3.569-5.187m-6.33 4.855c-1.077 0-2.026-.512-2.026-1.453 0-1.483 1.822-1.934 3.606-1.934.678 0 1.34.045 1.927.173-.422 1.927-1.671 3.215-3.508 3.214Z"};
+  const EMAIL_ICON = "M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4.2-8 5-8-5V6l8 5 8-5v2.2z";
+  const SOCIAL_LABEL = { instagram: "Instagram", tiktok: "TikTok", youtube: "YouTube", telegram: "Telegram", discord: "Discord", x: "X", facebook: "Facebook", threads: "Threads", email: "Email" };
+
+  const UI = {
+    arrow: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
+    flask: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v6L4.5 18.5A1.7 1.7 0 0 0 6 21h12a1.7 1.7 0 0 0 1.5-2.5L14 9V3"/><path d="M7 15h10"/></svg>',
+    steth: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v6a5 5 0 0 0 10 0V3"/><path d="M10 14v2a5 5 0 0 0 10 0v-2"/><circle cx="20" cy="12" r="2"/></svg>',
+    shield: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v4M12 16h.01"/></svg>',
+    info: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>',
+    chev: '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>',
+    calculator: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h.01M16 19h.01"/></svg>',
+    people: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg>',
+    tag: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.4 4.6 12 3H4v8l8.6 8.6a2 2 0 0 0 2.8 0l5-5a2 2 0 0 0 0-2.8z"/><circle cx="8" cy="8" r="1.5"/></svg>',
+    link: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg>',
+  };
+
+  /* ---------------- analytics (opt-in, cookieless) ---------------- */
+  const optedOut = navigator.doNotTrack === "1" || window.doNotTrack === "1" || navigator.globalPrivacyControl === true;
+  const gc = C.analytics && C.analytics.goatcounter;
+  if (gc && !optedOut) {
+    const s = document.createElement("script");
+    s.async = true;
+    s.src = "https://gc.zgo.at/count.js";
+    s.dataset.goatcounter = "https://" + encodeURIComponent(gc) + ".goatcounter.com/count";
+    document.head.appendChild(s);
+  }
+  function track(name) {
+    if (!gc || optedOut) return;
+    try { window.goatcounter && window.goatcounter.count({ path: "click-" + name, title: name, event: true }); } catch (e) {}
+  }
+
+  /* ---------------- helpers ---------------- */
+  function withUtm(url) {
+    if (!C.utmSource || !/^https?:/i.test(url)) return url;
+    try { const u = new URL(url); if (!u.searchParams.has("utm_source")) { u.searchParams.set("utm_source", C.utmSource); u.searchParams.set("utm_medium", "link_in_bio"); } return u.toString(); }
+    catch (e) { return url; }
+  }
+  const pageUrl = () => C.siteUrl || (location.origin + location.pathname);
+
+  function logoHtml(l, fallbackHtml) {
+    // Plain text only: no attempt to imitate the official logo.
+    const fallback = fallbackHtml || '<span class="wordmark">' + esc(l.name) + "</span>";
+    if (!l.logo) return fallback;
+    const cls = l.logoPlate ? "plate" : l.logoRound ? "round" : "";
+    // If the logo file is missing, the image removes itself and the text name shows.
+    return '<span class="' + cls + '" data-logo><img src="' + esc(l.logo) + '" alt="' + esc(l.name) + '" decoding="async"></span>' +
+           '<span data-fallback hidden>' + fallback + "</span>";
+  }
+
+  /* ---------------- hero ---------------- */
+  const P = C.profile;
+  $("name").textContent = P.name;
+  $("title").textContent = P.title;
+  $("bio").textContent = P.bio;
+  $("tagline").textContent = P.tagline;
+  if (P.avatar) {
+    $("avatar").innerHTML = '<img src="' + esc(P.avatar) + '" alt="' + esc(P.name) + ' badge" width="560" height="560" fetchpriority="high">';
+    document.querySelector(".hero").classList.add("has-badge");
+  } else {
+    $("avatar").innerHTML = '<span class="mark">N</span>';
+  }
+
+  /* ---------------- socials (empty = hidden) ---------------- */
+  $("socials").innerHTML = Object.entries(C.socials || {})
+    .filter(([k, v]) => v && (BRAND[k] || k === "email"))
+    .map(([k, v]) => {
+      const href = k === "email" ? "mailto:" + v : v;
+      const path = k === "email" ? EMAIL_ICON : BRAND[k];
+      const ext = k === "email" ? "" : ' target="_blank" rel="noopener"';
+      return '<a class="social" href="' + esc(href) + '"' + ext + ' data-track="social-' + k + '" aria-label="' + SOCIAL_LABEL[k] + '" title="' + SOCIAL_LABEL[k] + '"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="' + path + '"/></svg></a>';
+    }).join("");
+  if (!$("socials").children.length) $("socials").remove();
+
+  /* ---------------- links ---------------- */
+  function cardHtml(l) {
+    const live = !!l.url;
+    const tag = live ? "a" : "div";
+    const attrs = live ? ' href="' + esc(withUtm(l.url)) + '" target="_blank" rel="noopener" data-track="' + esc(l.id) + '"' : ' aria-disabled="true"';
+    const theme = l.theme || "default";
+    const btnLabel = live ? esc(l.button || "Open") : "Coming soon";
+
+    if (l.size === "feature") {
+      const badgeIcon = theme === "noowav" ? UI.flask : theme === "wavrx" ? UI.steth : theme === "nooworld" ? UI.tag : "";
+      return "<" + tag + ' class="card feature' + (live ? "" : " soon") + '" data-theme="' + theme + '"' + attrs + ">" +
+        (theme === "wavrx" ? '<span class="rxline"></span>' : "") +
+        (theme === "nooworld" ? '<span class="smoke" aria-hidden="true"><i class="s1"></i><i class="s2"></i><i class="w"></i></span>' : "") +
+        (l.banner && l.logo
+          ? '<div class="c-banner" data-logo><img src="' + esc(l.logo) + '" alt="' + esc(l.name) + '" decoding="async"></div>' +
+            '<div class="c-head" data-fallback hidden><span class="wordmark">' + esc(l.name) + "</span></div>" +
+            (l.badge ? '<div class="c-badgerow"><span class="badge">' + badgeIcon + esc(l.badge) + "</span></div>" : "")
+          : '<div class="c-head"><div class="c-logo">' + logoHtml(l) + "</div>" +
+            (l.badge ? '<span class="badge">' + badgeIcon + esc(l.badge) + "</span>" : "") + "</div>") +
+        (l.tagline ? '<h2 class="c-tagline">' + esc(l.tagline) + "</h2>" : "") +
+        (l.description ? '<p class="c-desc">' + esc(l.description) + "</p>" : "") +
+        (l.notice ? '<p class="c-notice">' + (theme === "wavrx" ? UI.info : UI.shield) + "<span>" + esc(l.notice) + "</span></p>" : "") +
+        '<span class="c-btn">' + btnLabel + (live ? UI.arrow : "") + "</span>" +
+        "</" + tag + ">";
+    }
+    // tile
+    const iconBox = '<span class="ticon">' + (UI[l.icon] || (theme === "hq" ? UI.people : UI.link)) + "</span>";
+    const icon = l.logo ? logoHtml(l, iconBox) : iconBox;
+    return "<" + tag + ' class="card tile' + (live ? "" : " soon") + '" data-theme="' + theme + '"' + attrs + ">" +
+      '<div class="c-head"><div class="c-logo">' + icon + "</div></div>" +
+      '<h2 class="c-name">' + esc(l.name) + "</h2>" +
+      (l.description ? '<p class="c-desc">' + esc(l.description) + "</p>" : "") +
+      '<span class="c-btn">' + btnLabel + (live ? UI.arrow : "") + "</span>" +
+      "</" + tag + ">";
+  }
+
+  const comparison =
+    '<details class="compare"><summary><span class="q">' + UI.info + "Research use vs. prescribed: what's the difference?</span>" + UI.chev + "</summary>" +
+    '<div class="cmp">' +
+      '<div class="ruo"><h4>Research use only</h4><ul><li>Laboratory research materials</li><li>Third-party tested, COAs available</li><li>Not for human or veterinary use</li><li>No prescription or medical guidance</li></ul></div>' +
+      '<div class="rx"><h4>Prescribed care</h4><ul><li>Telehealth with a licensed provider</li><li>Evaluation comes first</li><li>Treatment only if prescribed</li><li>Personalized to you</li></ul></div>' +
+    "</div></details>";
+
+  const links = (C.links || []).filter((l) => !l.hidden);
+  let html = "";
+  let lastFeature = -1;
+  links.forEach((l, i) => { if (l.size === "feature") lastFeature = i; });
+  const cmpIndex = links.findIndex((l) => l.id === C.comparisonAfter);
+  const cmpAt = cmpIndex >= 0 ? cmpIndex : lastFeature;
+  links.forEach((l, i) => {
+    html += cardHtml(l);
+    if (i === cmpAt && C.showComparison) html += comparison;
+  });
+  html += "<footer><p>" + esc(C.disclaimer) + '</p><p class="copy">© ' + new Date().getFullYear() + " " + esc(P.name) + "</p></footer>";
+  $("links").innerHTML = html;
+
+  // logo fallback: show the brand name if the image can't load
+  document.querySelectorAll("[data-logo] img").forEach((img) => {
+    const swap = () => { const box = img.parentElement; box.nextElementSibling.hidden = false; box.remove(); };
+    if (img.complete && !img.naturalWidth) swap(); else img.addEventListener("error", swap);
+  });
+
+  /* ---------------- motion ---------------- */
+  const cards = Array.from(document.querySelectorAll(".card"));
+  cards.forEach((card, i) => {
+    setTimeout(() => card.classList.add("in"), 80 + i * 90);
+    card.addEventListener("pointermove", (e) => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty("--mx", e.clientX - r.left + "px");
+      card.style.setProperty("--my", e.clientY - r.top + "px");
+    });
+  });
+
+  /* ---------------- click tracking ---------------- */
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest("[data-track]");
+    if (a) track(a.dataset.track);
+  });
+
+  /* ---------------- share sheet ---------------- */
+  const sheet = $("sheet");
+  let qrDrawn = false;
+  function drawQr() {
+    if (qrDrawn || typeof qrcode !== "function") return;
+    const q = qrcode(0, "M");
+    q.addData(pageUrl());
+    q.make();
+    const n = q.getModuleCount(), cv = $("qr"), ctx = cv.getContext("2d");
+    const quiet = 2, scale = Math.floor(512 / (n + quiet * 2)), size = scale * (n + quiet * 2);
+    cv.width = cv.height = size;
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, size, size);
+    ctx.fillStyle = "#0b0612";
+    for (let r = 0; r < n; r++) for (let c = 0; c < n; c++) if (q.isDark(r, c)) ctx.fillRect((c + quiet) * scale, (r + quiet) * scale, scale, scale);
+    qrDrawn = true;
+  }
+  function openSheet() {
+    $("urlPill").textContent = pageUrl().replace(/^https?:\/\//, "");
+    sheet.classList.add("open");
+    drawQr();
+    $("sheetClose").focus();
+    track("share-open");
+  }
+  function closeSheet() { sheet.classList.remove("open"); $("shareBtn").focus(); }
+  $("shareBtn").addEventListener("click", openSheet);
+  $("sheetClose").addEventListener("click", closeSheet);
+  sheet.addEventListener("click", (e) => { if (e.target === sheet) closeSheet(); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && sheet.classList.contains("open")) closeSheet(); });
+
+  const toast = (msg) => { const t = $("toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove("show"), 1800); };
+  async function copyLink() {
+    try { await navigator.clipboard.writeText(pageUrl()); toast("Link copied"); }
+    catch (e) {
+      const ta = document.createElement("textarea"); ta.value = pageUrl(); document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); toast("Link copied"); } catch (err) { toast(pageUrl()); }
+      ta.remove();
+    }
+    track("share-copy");
+  }
+  $("copyBtn").addEventListener("click", copyLink);
+  $("nativeBtn").addEventListener("click", async () => {
+    track("share-native");
+    if (navigator.share) { try { await navigator.share({ title: document.title, text: P.tagline, url: pageUrl() }); } catch (e) {} }
+    else copyLink();
+  });
+  $("qrSave").addEventListener("click", () => {
+    drawQr();
+    const a = document.createElement("a");
+    a.download = "mr-noowav-qr.png";
+    a.href = $("qr").toDataURL("image/png");
+    a.click();
+    track("share-qr-save");
+  });
+})();
