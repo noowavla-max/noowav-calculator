@@ -68,7 +68,7 @@
   $("name").textContent = P.name;
   $("title").textContent = P.title;
   $("bio").textContent = P.bio;
-  $("tagline").textContent = P.tagline;
+  if (P.tagline) $("tagline").textContent = P.tagline; else document.querySelector(".tagline").remove();
   if (P.avatar) {
     $("avatar").innerHTML = '<img src="' + esc(P.avatar) + '" alt="' + esc(P.name) + ' badge" width="560" height="560" fetchpriority="high">';
     document.querySelector(".hero").classList.add("has-badge");
@@ -208,7 +208,7 @@
   $("copyBtn").addEventListener("click", copyLink);
   $("nativeBtn").addEventListener("click", async () => {
     track("share-native");
-    if (navigator.share) { try { await navigator.share({ title: document.title, text: P.tagline, url: pageUrl() }); } catch (e) {} }
+    if (navigator.share) { try { await navigator.share({ title: document.title, text: P.tagline || P.title, url: pageUrl() }); } catch (e) {} }
     else copyLink();
   });
   $("qrSave").addEventListener("click", () => {

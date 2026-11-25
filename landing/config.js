@@ -16,7 +16,7 @@ window.NOOWAV_CONFIG = {
     name: "Mr. NOOWAV",
     title: "Founder | Peptides & Wellness",
     bio: "Exploring the world of peptides, wellness, and research. Connecting curiosity with education and resources.",
-    tagline: "Know your options. Ride the WAV.",
+    tagline: "",           // optional line under the bio; "" hides it
     // Badge at the top. It already shows the name, so the text name is
     // hidden visually (still read by screen readers and search engines).
     // Set to "" to go back to the text name with a small "N" mark.
