@@ -107,7 +107,7 @@ window.NOOWAV_CONFIG = {
     youtube: "https://www.youtube.com/@MrNOOWAV",
     telegram: "",
     discord: "",
-    email: "noowavla@gmail.com",
+    email: "shop@noowav.com",
   },
 
   /* Privacy-conscious analytics (optional).
