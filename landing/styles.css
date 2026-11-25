@@ -167,8 +167,9 @@ a.card:hover::before{opacity:1}
 .c-logo img{display:block;height:40px;width:auto;max-width:190px;object-fit:contain}
 .c-logo .plate{display:grid;place-items:center;height:54px;padding:4px 10px;border-radius:14px;background:#fff;box-shadow:0 4px 20px rgba(0,0,0,.35)}
 .c-logo .plate img{height:46px;max-width:150px}
-.c-logo .round img{height:46px;width:46px;border-radius:50%;object-fit:cover;background:#fff}
-.wordmark{font-family:var(--display);font-weight:800;font-size:17px;letter-spacing:.01em;line-height:1.1}
+.c-logo .round{display:grid;place-items:center;width:52px;height:52px;border-radius:50%;background:#fff;box-shadow:0 0 0 1px rgba(209,139,255,.35),0 4px 18px rgba(162,75,255,.35)}
+.c-logo .round img{height:46px;width:46px;object-fit:contain}
+.wordmark{font-family:var(--sans);font-weight:700;font-size:16px;letter-spacing:.02em;line-height:1.2;color:var(--text)}
 .badge{flex:none;display:inline-flex;align-items:center;gap:6px;padding:5px 9px;border-radius:8px;
   font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
 .badge svg{width:12px;height:12px}
@@ -192,7 +193,6 @@ a.card:hover .c-btn svg{transform:translateX(3px)}
 .card[data-theme=noowav]:hover{border-color:rgba(255,157,247,.5);box-shadow:0 14px 50px -12px rgba(240,32,224,.45)}
 .card[data-theme=noowav] .wavebg{position:absolute;right:-30px;top:-10px;width:260px;opacity:.22;z-index:-1;color:var(--nw-magenta)}
 .card[data-theme=noowav] .badge{background:rgba(150,209,199,.12);color:var(--nw-mint);border:1px solid rgba(150,209,199,.35)}
-.card[data-theme=noowav] .wordmark{background:linear-gradient(90deg,var(--nw-pink),var(--nw-mint) 60%,var(--nw-sky));-webkit-background-clip:text;background-clip:text;color:transparent}
 .card[data-theme=noowav] .c-notice{background:rgba(150,209,199,.07);border:1px dashed rgba(150,209,199,.35);color:#cdeee8}
 .card[data-theme=noowav] .c-btn{color:#140a17;background:linear-gradient(90deg,var(--nw-pink),#e9a8ff 45%,var(--nw-sky))}
 
@@ -207,7 +207,6 @@ a.card:hover .c-btn svg{transform:translateX(3px)}
 .card[data-theme=wavrx]:hover{border-color:rgba(201,179,255,.45);box-shadow:0 14px 50px -12px rgba(155,108,245,.5)}
 .card[data-theme=wavrx] .rxline{position:absolute;left:18px;right:18px;top:0;height:2px;border-radius:0 0 2px 2px;background:linear-gradient(90deg,transparent,var(--rx),transparent);z-index:-1}
 .card[data-theme=wavrx] .badge{background:rgba(155,108,245,.14);color:var(--rx-soft);border:1px solid rgba(155,108,245,.4)}
-.card[data-theme=wavrx] .wordmark{color:#fff}.card[data-theme=wavrx] .wordmark b{color:var(--rx);font-weight:800}
 .card[data-theme=wavrx] .c-tagline{font-weight:600}
 .card[data-theme=wavrx] .c-notice{background:rgba(155,108,245,.08);border:1px solid rgba(155,108,245,.28);color:#ddd2ff}
 .card[data-theme=wavrx] .c-btn{color:#fff;background:var(--rx);box-shadow:inset 0 1px 0 rgba(255,255,255,.25)}

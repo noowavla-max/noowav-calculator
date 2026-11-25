@@ -62,7 +62,7 @@ window.NOOWAV_CONFIG = {
       size: "tile",
       theme: "hq",
       name: "NOOWAV HQ",
-      logo: "assets/logos/nooworld.png",
+      logo: "assets/logos/nooworld.webp",
       logoRound: true,
       description: "Your all-access pass to the NOOWAV community. Rewards, updates, orders, and more.",
       button: "Access HQ",

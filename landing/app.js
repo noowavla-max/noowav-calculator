@@ -54,9 +54,8 @@
   const pageUrl = () => C.siteUrl || (location.origin + location.pathname);
 
   function logoHtml(l, fallbackHtml) {
-    const fallback = fallbackHtml || (l.theme === "wavrx"
-      ? '<span class="wordmark">WAV <b>RX</b></span>'
-      : '<span class="wordmark">' + esc(l.name) + "</span>");
+    // Plain text only: no attempt to imitate the official logo.
+    const fallback = fallbackHtml || '<span class="wordmark">' + esc(l.name) + "</span>";
     if (!l.logo) return fallback;
     const cls = l.logoPlate ? "plate" : l.logoRound ? "round" : "";
     // If the logo file is missing, the image removes itself and the text name shows.
