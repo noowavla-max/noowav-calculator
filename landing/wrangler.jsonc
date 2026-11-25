@@ -1,0 +1,9 @@
+// Cloudflare deploy settings for the Mr. NOOWAV link page.
+// Cloudflare runs `npx wrangler deploy` from this folder (root directory: landing).
+{
+  "name": "mrnoowav",
+  "compatibility_date": "2025-11-01",
+  "assets": {
+    "directory": "."
+  }
+}
