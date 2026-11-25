@@ -216,21 +216,25 @@ a.card:hover .c-btn svg{transform:translateX(3px)}
 .c-badgerow{display:flex;justify-content:center;margin-top:6px}
 @media (min-width:980px){.c-banner{height:140px}}
 
-/* --- theme: NOOWORLD (dark charcoal streetwear, muted violet accents) --- */
+/* --- theme: NOOWORLD (black brick, purple smoke, rim light) --- */
 .card[data-theme=nooworld]{
-  --spot:rgba(124,77,180,.18);
+  --spot:rgba(124,77,180,.22);
   background:
-    radial-gradient(90% 70% at 0% 100%,rgba(92,52,140,.22),transparent 60%),
-    linear-gradient(180deg,rgba(28,26,32,.9),rgba(12,11,14,.92));
-  border-color:rgba(255,255,255,.12);
+    linear-gradient(180deg,rgba(6,5,8,.15) 0%,rgba(6,5,8,.55) 55%,rgba(6,5,8,.85) 100%),
+    radial-gradient(80% 60% at 100% 0%,rgba(140,70,220,.22),transparent 65%),
+    radial-gradient(70% 70% at 0% 100%,rgba(110,50,180,.25),transparent 70%),
+    url(assets/textures/brick.webp) center/cover,
+    #0b0a0d;
+  border-color:rgba(255,255,255,.1);
+  box-shadow:inset 0 1px 0 rgba(190,150,255,.12);
 }
-.card[data-theme=nooworld]:hover{border-color:rgba(160,120,220,.45);box-shadow:0 14px 44px -14px rgba(110,60,180,.5)}
-.card[data-theme=nooworld] .c-logo .round{width:64px;height:64px;box-shadow:0 0 0 1px rgba(160,120,220,.5),0 0 22px rgba(110,60,180,.45)}
-.card[data-theme=nooworld] .c-logo .round img{width:58px;height:58px}
-.card[data-theme=nooworld] .badge{background:#1d1b22;color:#c3a8ee;border:1px solid rgba(160,120,220,.35)}
-.card[data-theme=nooworld] .c-tagline{font-family:var(--display);font-weight:800;text-transform:uppercase;letter-spacing:.01em;font-size:16px;line-height:1.25}
-.card[data-theme=nooworld] .c-desc{color:#b8b2c2}
-.card[data-theme=nooworld] .c-btn{background:#1d1b22;color:#fff;border:1px solid rgba(160,120,220,.55);box-shadow:inset 0 -2px 0 rgba(124,77,180,.6)}
+.card[data-theme=nooworld]:hover{border-color:rgba(160,120,220,.45);box-shadow:inset 0 1px 0 rgba(190,150,255,.12),0 14px 44px -14px rgba(110,60,180,.55)}
+.card[data-theme=nooworld] .c-logo .round{width:76px;height:76px;background:none;box-shadow:none;border-radius:0}
+.card[data-theme=nooworld] .c-logo .round img{width:76px;height:76px;filter:drop-shadow(0 0 1px rgba(255,255,255,.25)) drop-shadow(0 0 14px rgba(150,80,230,.55))}
+.card[data-theme=nooworld] .badge{background:rgba(20,18,24,.85);color:#c3a8ee;border:1px solid rgba(160,120,220,.35)}
+.card[data-theme=nooworld] .c-tagline{font-family:var(--display);font-weight:800;text-transform:uppercase;letter-spacing:.01em;font-size:16px;line-height:1.25;text-shadow:0 2px 12px rgba(0,0,0,.8)}
+.card[data-theme=nooworld] .c-desc{color:#c4bece;text-shadow:0 1px 8px rgba(0,0,0,.8)}
+.card[data-theme=nooworld] .c-btn{background:rgba(22,20,27,.9);color:#fff;border:1px solid rgba(160,120,220,.55);box-shadow:inset 0 -2px 0 rgba(124,77,180,.6)}
 a.card[data-theme=nooworld]:hover .c-btn{background:#2a2333}
 
 /* --- tiles --- */
