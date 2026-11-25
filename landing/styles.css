@@ -216,20 +216,22 @@ a.card:hover .c-btn svg{transform:translateX(3px)}
 .c-badgerow{display:flex;justify-content:center;margin-top:6px}
 @media (min-width:980px){.c-banner{height:140px}}
 
-/* --- theme: NOO WORLD (apparel: raw black & white, streetwear) --- */
+/* --- theme: NOOWORLD (dark charcoal streetwear, muted violet accents) --- */
 .card[data-theme=nooworld]{
-  --spot:rgba(255,255,255,.10);
+  --spot:rgba(124,77,180,.18);
   background:
-    repeating-linear-gradient(135deg,rgba(255,255,255,.025) 0 2px,transparent 2px 7px),
-    rgba(8,8,10,.86);
-  border-color:rgba(255,255,255,.2);
+    radial-gradient(90% 70% at 0% 100%,rgba(92,52,140,.22),transparent 60%),
+    linear-gradient(180deg,rgba(28,26,32,.9),rgba(12,11,14,.92));
+  border-color:rgba(255,255,255,.12);
 }
-.card[data-theme=nooworld]:hover{border-color:rgba(255,255,255,.5);box-shadow:0 14px 44px -14px rgba(255,255,255,.18)}
-.card[data-theme=nooworld] .c-logo .round{width:66px;height:66px;box-shadow:0 0 0 2px #fff,0 6px 22px rgba(0,0,0,.6)}
-.card[data-theme=nooworld] .c-logo .round img{width:60px;height:60px}
-.card[data-theme=nooworld] .badge{background:#fff;color:#0a0a0a;border:1px solid #fff}
-.card[data-theme=nooworld] .c-tagline{font-family:var(--display);font-weight:800;text-transform:uppercase;letter-spacing:.02em;font-size:15px}
-.card[data-theme=nooworld] .c-btn{background:#fff;color:#0a0a0a}
+.card[data-theme=nooworld]:hover{border-color:rgba(160,120,220,.45);box-shadow:0 14px 44px -14px rgba(110,60,180,.5)}
+.card[data-theme=nooworld] .c-logo .round{width:64px;height:64px;box-shadow:0 0 0 1px rgba(160,120,220,.5),0 0 22px rgba(110,60,180,.45)}
+.card[data-theme=nooworld] .c-logo .round img{width:58px;height:58px}
+.card[data-theme=nooworld] .badge{background:#1d1b22;color:#c3a8ee;border:1px solid rgba(160,120,220,.35)}
+.card[data-theme=nooworld] .c-tagline{font-family:var(--display);font-weight:800;text-transform:uppercase;letter-spacing:.01em;font-size:16px;line-height:1.25}
+.card[data-theme=nooworld] .c-desc{color:#b8b2c2}
+.card[data-theme=nooworld] .c-btn{background:#1d1b22;color:#fff;border:1px solid rgba(160,120,220,.55);box-shadow:inset 0 -2px 0 rgba(124,77,180,.6)}
+a.card[data-theme=nooworld]:hover .c-btn{background:#2a2333}
 
 /* --- tiles --- */
 .card.tile .c-head{min-height:0}
