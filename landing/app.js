@@ -99,7 +99,7 @@
       const badgeIcon = theme === "noowav" ? UI.flask : theme === "wavrx" ? UI.steth : theme === "nooworld" ? UI.tag : "";
       return "<" + tag + ' class="card feature' + (live ? "" : " soon") + '" data-theme="' + theme + '"' + attrs + ">" +
         (theme === "wavrx" ? '<span class="rxline"></span>' : "") +
-        (theme === "nooworld" ? '<span class="smoke" aria-hidden="true"><i></i><i></i></span>' : "") +
+        (theme === "nooworld" ? '<span class="smoke" aria-hidden="true"><i class="s1"></i><i class="s2"></i><i class="w"></i></span>' : "") +
         (l.banner && l.logo
           ? '<div class="c-banner" data-logo><img src="' + esc(l.logo) + '" alt="' + esc(l.name) + '" decoding="async"></div>' +
             '<div class="c-head" data-fallback hidden><span class="wordmark">' + esc(l.name) + "</span></div>" +

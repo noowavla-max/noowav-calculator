@@ -232,18 +232,26 @@ a.card:hover .c-btn svg{transform:translateX(3px)}
 .card[data-theme=nooworld] .c-logo .round{width:76px;height:76px;background:none;box-shadow:none;border-radius:0}
 .card[data-theme=nooworld] .c-logo .round img{width:76px;height:76px;filter:drop-shadow(0 0 1px rgba(255,255,255,.25)) drop-shadow(0 0 14px rgba(150,80,230,.55))}
 .card[data-theme=nooworld] .badge{background:rgba(20,18,24,.85);color:#c3a8ee;border:1px solid rgba(160,120,220,.35)}
-.card[data-theme=nooworld] .c-tagline{font-family:var(--display);font-weight:800;text-transform:uppercase;letter-spacing:.01em;font-size:16px;line-height:1.25;text-shadow:0 2px 12px rgba(0,0,0,.8)}
-.card[data-theme=nooworld] .c-desc{color:#c4bece;text-shadow:0 1px 8px rgba(0,0,0,.8)}
+.card[data-theme=nooworld] .c-tagline{font-family:var(--display);font-weight:800;text-transform:uppercase;letter-spacing:.01em;font-size:16px;line-height:1.25;text-shadow:0 1px 2px rgba(0,0,0,.95),0 2px 14px rgba(0,0,0,.85)}
+.card[data-theme=nooworld] .c-desc{color:#d6d0de;text-shadow:0 1px 2px rgba(0,0,0,.95),0 0 14px rgba(0,0,0,.85)}
 .card[data-theme=nooworld] .c-btn{background:rgba(22,20,27,.9);color:#fff;border:1px solid rgba(160,120,220,.55);box-shadow:inset 0 -2px 0 rgba(124,77,180,.6)}
 a.card[data-theme=nooworld]:hover .c-btn{background:#2a2333}
-/* drifting purple smoke over the brick */
+/* purple smoke over the brick: slow drift + uneven swelling + rising wisps */
 .smoke{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none;border-radius:inherit}
-.smoke i{position:absolute;left:0;bottom:-4%;width:200%;height:115%;
-  background:url(assets/textures/smoke.webp) repeat-x left bottom/50% 100%;
-  opacity:1;mix-blend-mode:screen;animation:smokeDrift 46s linear infinite;will-change:transform}
-.smoke i + i{height:90%;bottom:-8%;opacity:.75;transform:scaleX(-1);animation:smokeDriftRev 68s linear infinite}
-@keyframes smokeDrift{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
-@keyframes smokeDriftRev{from{transform:translate3d(-50%,0,0) scaleX(-1)}to{transform:translate3d(0,0,0) scaleX(-1)}}
+.smoke i{position:absolute;left:0;width:200%;background-repeat:repeat-x;background-position:left bottom;background-size:50% 100%;
+  mix-blend-mode:screen;transform-origin:50% 100%;will-change:transform,translate,scale,opacity}
+.smoke .s1{bottom:-6%;height:125%;background-image:url(assets/textures/smoke.webp);opacity:.9;
+  animation:smokeDrift 120s linear infinite,smokeBreathe 17s ease-in-out infinite alternate}
+.smoke .s2{bottom:-12%;height:105%;background-image:url(assets/textures/smoke.webp);opacity:.6;transform:scaleX(-1);
+  animation:smokeDriftRev 170s linear infinite,smokeBreathe2 23s ease-in-out -7s infinite alternate}
+.smoke .w{bottom:-10%;height:115%;background-image:url(assets/textures/wisps.webp);opacity:.55;
+  -webkit-mask-image:linear-gradient(to top,transparent 0,#000 30%);mask-image:linear-gradient(to top,transparent 0,#000 30%);
+  animation:smokeDrift 210s linear -40s infinite,smokeRise 29s cubic-bezier(.45,0,.55,1) infinite}
+@keyframes smokeDrift{from{translate:0 0}to{translate:-50% 0}}
+@keyframes smokeDriftRev{from{translate:-50% 0}to{translate:0 0}}
+@keyframes smokeBreathe{0%{scale:1 1;opacity:.7}35%{scale:1.05 1.2;opacity:.95}70%{scale:1.02 1.03;opacity:.8}100%{scale:1 1.12;opacity:.9}}
+@keyframes smokeBreathe2{0%{scale:1 1.1;opacity:.4}45%{scale:1.04 1;opacity:.8}100%{scale:1 1.22;opacity:.55}}
+@keyframes smokeRise{0%{transform:translateY(20%);opacity:0}18%{opacity:.75}42%{opacity:.35}58%{opacity:.8}100%{transform:translateY(-20%);opacity:0}}
 .card[data-theme=nooworld]:hover .smoke i{filter:brightness(1.25)}
 
 /* --- tiles --- */
