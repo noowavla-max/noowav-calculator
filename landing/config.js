@@ -50,7 +50,7 @@ window.NOOWAV_CONFIG = {
       size: "feature",
       theme: "wavrx",
       name: "WAV RX",
-      logo: "assets/logos/wavrx.png",
+      logo: "assets/logos/wavrx.webp",
       badge: "Telehealth",
       tagline: "A new wave of care.",
       description: "Modern telehealth. Built around you. Personalized treatment, when prescribed.",

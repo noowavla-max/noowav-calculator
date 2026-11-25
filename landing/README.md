@@ -31,7 +31,7 @@ Save the official files with these names (PNG with a transparent background is b
 | File | Used on |
 |---|---|
 | `assets/logos/noowav-solutions.webp` (added) | NOOWAV SOLUTIONS card (banner across the top) |
-| `assets/logos/wavrx.png` | WAV RX card (white + purple, made for dark backgrounds) |
+| `assets/logos/wavrx.webp` (added) | WAV RX card |
 | `assets/logos/nooworld.webp` (added) | NOOWAV HQ tile (shown as a circle) |
 
 Until a file is there, the card shows the brand name as plain text (or an icon for tiles).
